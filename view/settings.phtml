@@ -1,0 +1,118 @@
+<?php
+
+use App\Application\Devflow;
+use App\Shared\Services\Registry;
+
+use Qubus\EventDispatcher\ActionFilter\Action;
+
+use function App\Shared\Helpers\admin_url;
+use function App\Shared\Helpers\selected;
+use function Qubus\Security\Helpers\esc_html__;
+
+$this->parent('framework::backend/layouts/admin-layout');
+$this->block('backend', function ($params) {
+
+Registry::getInstance()->{'set'}('screen_parent', 'plugins');
+Registry::getInstance()->{'set'}('screen_child', 'custom-fields');
+
+$settings = $params['settings'] ?? [];
+$uninstallOnDeactivate = ! empty($settings['uninstall_on_deactivate']);
+$defaultGallerySize = $settings['default_gallery_size'] ?? 'medium';
+$defaultFieldStyle = $settings['default_field_style'] ?? 'default';
+$r = Registry::getInstance()->get('custom-fields');
+?>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <i class="fa fa-keyboard"></i>
+            <h3 class="box-title"><?=esc_html__('Custom Fields', $r['id']);?></h3>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" onclick="window.location='<?= admin_url('plugin/custom-fields/import/');?>'"><i class="fa fa-file-import"></i> <?=esc_html__('Import', $r['id']);?></button>
+                <button type="button" class="btn btn-warning" onclick="window.location='<?= admin_url('plugin/custom-fields/create/');?>'"><i class="fa fa-plus"></i> <?=esc_html__('Create', $r['id']);?></button>
+                <button type="button" class="btn btn-danger" onclick="window.location='<?= admin_url('plugin/custom-fields/');?>'"><i class="fa fa-x"></i> <?=esc_html__('Cancel', $r['id']);?></button>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <h1>
+            <?=esc_html__('Settings', $r['id']);?>
+            <small><?=esc_html__('Custom Fields', $r['id']);?></small>
+        </h1>
+
+        <ol class="breadcrumb">
+            <li><a href="<?= admin_url(); ?>"><i class="fa fa-dashboard"></i> <?=esc_html__('Dashboard', $r['id']);?></a></li>
+            <li><a href="<?= admin_url('plugin/custom-fields/'); ?>"><?=esc_html__('Field Groups', $r['id']);?></a></li>
+            <li class="active"><?=esc_html__('Settings', $r['id']);?></li>
+        </ol>
+    </section>
+
+    <section class="content">
+
+        <?php Action::getInstance()->doAction('admin_notices'); ?>
+
+        <?= Devflow::$PHP->flash->display(); ?>
+
+        <form method="post" action="<?= admin_url('plugin/custom-fields/settings/update/'); ?>">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><?=esc_html__('General Settings', $r['id']);?></h3>
+                </div>
+
+                <div class="box-body">
+                    <div class="checkbox">
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="uninstall_on_deactivate"
+                                value="1"
+                                <?= $uninstallOnDeactivate ? 'checked' : ''; ?>
+                            >
+                            <?=esc_html__('Uninstall custom fields data when this plugin is deactivated.', $r['id']);?>
+                        </label>
+
+                        <p class="help-block">
+                            <?=esc_html__('Warning: this can remove field groups, fields, and plugin settings during deactivation.', $r['id']);?>
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <label for="default-gallery-size"><?=esc_html__('Default Gallery Preview Size', $r['id']);?></label>
+                        <select name="default_gallery_size" id="default-gallery-size" class="form-control">
+                            <option value="small" <?= selected($defaultGallerySize, 'small'); ?>><?=esc_html__('Small', $r['id']);?></option>
+                            <option value="medium" <?= selected($defaultGallerySize, 'medium'); ?>><?=esc_html__('Medium', $r['id']);?></option>
+                            <option value="large" <?= selected($defaultGallerySize, 'large'); ?>><?=esc_html__('Large', $r['id']);?></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="default-field-style"><?=esc_html__('Default Field Style', $r['id']);?></label>
+                        <select name="default_field_style" id="default-field-style" class="form-control">
+                            <option value="default" <?= selected($defaultFieldStyle, 'default'); ?>><?=esc_html__('Default', $r['id']);?></option>
+                            <option value="compact" <?= selected($defaultFieldStyle, 'compact'); ?>><?=esc_html__('Compact', $r['id']);?></option>
+                            <option value="comfortable" <?= selected($defaultFieldStyle, 'comfortable'); ?>><?=esc_html__('Comfortable', $r['id']);?></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i> <?=esc_html__('Save Settings', $r['id']);?>
+                    </button>
+
+                    <a href="<?= admin_url('plugin/custom-fields/'); ?>" class="btn btn-default">
+                        <?=esc_html__('Cancel', $r['id']);?>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </section>
+
+</div>
+
+<?php }); ?>

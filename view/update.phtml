@@ -1,0 +1,569 @@
+<?php
+
+use App\Application\Devflow;
+use App\Shared\Services\Registry;
+use Plugin\CustomFields\Helper\Checker;
+use Qubus\EventDispatcher\ActionFilter\Action;
+
+use function App\Shared\Helpers\admin_url;
+use function Qubus\Security\Helpers\esc_attr;
+use function Qubus\Security\Helpers\esc_html;
+use function Qubus\Security\Helpers\esc_html__;
+
+$this->parent('framework::backend/layouts/admin-layout');
+$this->block('backend', function ($params) {
+Registry::getInstance()->{'set'}('screen_parent', 'plugins');
+Registry::getInstance()->{'set'}('screen_child', 'custom-fields');
+
+$r = Registry::getInstance()->get('custom-fields');
+
+$group = $params['group'] ?? null;
+    if (is_object($group)) {
+        $group = $group->toArray();
+    }
+$fields = $params['fields'] ?? [];
+$fieldTypes = $params['fieldTypes'] ?? [];
+$contentTypes = $params['contentTypes'] ?? [];
+$action = $params['action'] ?? '';
+
+$location = $group['location'] ?? [];
+$settings = $group['settings'] ?? [];
+
+if (is_string($settings)) {
+    $settings = json_decode($settings, true) ?: [];
+}
+
+$settings = array_merge([
+    'position' => 'normal',
+    'style' => 'default',
+    'hide_on_screen' => [],
+], is_array($settings) ? $settings : []);
+
+$isEditing = $group !== null;
+?>
+
+<!-- Content Wrapper. Contains content -->
+<div class="content-wrapper">
+    <!-- Content Header (Content header) -->
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <i class="fa fa-text-width"></i>
+            <h3 class="box-title"><?=esc_html__('Custom Fields', $r['id']);?></h3>
+            <div class="pull-right">
+                <button type="button" class="btn btn-secondary" onclick="window.location='<?= admin_url('plugin/custom-fields/settings/');?>'"><i class="fa fa-cog"></i> <?=esc_html__('Settings', $r['id']);?></button>
+                <button type="button" class="btn btn-primary" onclick="window.location='<?= admin_url('plugin/custom-fields/import/');?>'"><i class="fa fa-file-import"></i> <?=esc_html__('Import', $r['id']);?></button>
+                <?php if($isEditing): ?>
+                <button type="button" class="btn btn-warning" onclick="window.location='<?= admin_url('plugin/custom-fields/create/');?>'"><i class="fa fa-plus"></i> <?=esc_html__('Create', $r['id']);?></button>
+                <?php endif; ?>
+                <button type="button" class="btn btn-danger" onclick="window.location='<?= admin_url('plugin/custom-fields/');?>'"><i class="fa fa-x"></i> <?=esc_html__('Cancel', $r['id']);?></button>
+            </div>
+        </div>
+    </div>
+
+    <section class="content-header">
+        <h1>
+            <?= $isEditing ? esc_html__('Edit Field Group', $r['id']) : esc_html__('Add Field Group', $r['id']); ?>
+            <small><?=esc_html__('Custom Fields', $r['id']);?></small>
+        </h1>
+
+        <ol class="breadcrumb">
+            <li><a href="<?= admin_url(); ?>"><i class="fa fa-dashboard"></i> <?=esc_html__('Dashboard', $r['id']);?></a></li>
+            <li><a href="<?= admin_url('plugin/custom-fields/'); ?>"><?=esc_html__('Field Groups', $r['id']);?></a></li>
+            <li class="active"><?=esc_html__('Field Group Builder', $r['id']);?></li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <?= Devflow::$PHP->flash->display(); ?>
+
+        <form method="post" action="<?= $action; ?>" id="custom-field-group-form">
+
+            <input
+                type="hidden"
+                id="cf-field-group-id"
+                value="<?= esc_attr($group['id'] ?? 'new'); ?>"
+            >
+
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><?=esc_html__('Field Group', $r['id']);?></h3>
+                        </div>
+
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="field-group-title"><?=esc_html__('Title', $r['id']);?></label>
+                                <input
+                                        type="text"
+                                        name="title"
+                                        id="field-group-title"
+                                        class="form-control input-lg"
+                                        value="<?= esc_html($group['title'] ?? ''); ?>"
+                                        placeholder="Example: Product SEO Fields"
+                                        required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="field-group-slug">Slug</label>
+                                <input
+                                        type="text"
+                                        name="slug"
+                                        id="field-group-slug"
+                                        class="form-control"
+                                        value="<?= esc_html($group['slug'] ?? ''); ?>"
+                                        placeholder="Leave empty to auto-generate"
+                                >
+                            </div>
+
+                            <hr>
+
+                            <div class="cf-builder-layout">
+                                <?php
+                                $groupedFieldTypes = [];
+
+                                foreach ($fieldTypes as $type => $config) {
+                                    $category = $config['category'] ?? 'Other';
+
+                                    $groupedFieldTypes[$category][$type] = $config;
+                                }
+
+                                $categoryOrder = [
+                                    esc_html__('Basic', $r['id']),
+                                    esc_html__('Choices', $r['id']),
+                                    esc_html__('Media', $r['id']),
+                                    esc_html__('Structure', $r['id']),
+                                    esc_html__('Utility', $r['id']),
+                                    esc_html__('Other', $r['id']),
+                                ];
+                                ?>
+
+                                <div class="col-md-3 cf-builder-sidebar-col">
+                                    <div class="cf-field-sidebar-wrap">
+                                        <div class="cf-field-sidebar">
+                                            <h4><?=esc_html__('Field Types', $r['id']);?></h4>
+
+                                            <div class="form-group">
+                                                <input
+                                                        type="text"
+                                                        class="form-control input-sm"
+                                                        id="cf-field-type-search"
+                                                        placeholder="Search field types..."
+                                                        autocomplete="off"
+                                                >
+                                            </div>
+
+                                            <div class="panel-group cf-field-type-accordion" id="cf-field-type-accordion">
+                                                <?php foreach ($categoryOrder as $category): ?>
+                                                    <?php if (empty($groupedFieldTypes[$category])): ?>
+                                                        <?php continue; ?>
+                                                    <?php endif; ?>
+
+                                                    <?php $panelId = 'cf-field-category-' . strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', $category)); ?>
+
+                                                    <div class="panel panel-default cf-field-category-panel">
+                                                        <div class="panel-heading">
+                                                            <h5 class="panel-title">
+                                                                <a
+                                                                        data-toggle="collapse"
+                                                                        data-parent="#cf-field-type-accordion"
+                                                                        href="#<?= esc_attr($panelId); ?>"
+                                                                        aria-expanded="<?= $category === 'Basic' ? 'true' : 'false'; ?>"
+                                                                >
+                                                                    <?= esc_html($category); ?>
+                                                                </a>
+                                                            </h5>
+                                                        </div>
+
+                                                        <div
+                                                                id="<?= esc_attr($panelId); ?>"
+                                                                class="panel-collapse collapse <?= $category === 'Basic' ? 'in' : ''; ?>"
+                                                        >
+                                                            <div class="panel-body">
+                                                                <?php foreach ($groupedFieldTypes[$category] as $type => $config): ?>
+                                                                    <div
+                                                                            class="cf-field-type"
+                                                                            data-type="<?= esc_attr($type); ?>"
+                                                                            data-label="<?= esc_attr($config['label'] ?? ucfirst($type)); ?>"
+                                                                            data-category="<?= esc_attr($category); ?>"
+                                                                    >
+                                                                        <i class="fa <?= esc_attr($config['icon'] ?? 'fa-plus-circle'); ?>" aria-hidden="true"></i>
+                                                                        <span><?= esc_html($config['label'] ?? ucfirst($type)); ?></span>
+                                                                    </div>
+                                                                <?php endforeach; ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+
+                                            <p class="text-muted small cf-field-type-empty hidden">
+                                                <?=esc_html__('No field types found', $r['id']);?>.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cf-drop-wrapper">
+                                    <div class="cf-drop-header">
+                                        <h4>Fields</h4>
+                                        <p class="text-muted"><?=esc_html__('Drag field types into this area. Sort fields by dragging them.', $r['id']);?></p>
+                                    </div>
+
+                                    <div class="cf-builder-actions" style="margin-bottom:10px;">
+                                        <button type="button" class="btn btn-default btn-sm" id="cf-expand-all">
+                                            <?=esc_html__('Expand All', $r['id']);?>
+                                        </button>
+
+                                        <button type="button" class="btn btn-default btn-sm" id="cf-collapse-all">
+                                            <?=esc_html__('Collapse All', $r['id']);?>
+                                        </button>
+                                    </div>
+
+                                    <div id="cf-drop-zone" class="cf-drop-zone">
+                                        <?php if ($fields === []): ?>
+                                            <div class="cf-empty-state">
+                                                <i class="fa fa-mouse-pointer"></i>
+                                                <p><?=esc_html__('Drag fields here to build this field group.', $r['id']);?></p>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php foreach ($fields as $field): ?>
+                                            <?php
+                                            $fieldId = $field['id'] ?? uniqid('field_', true);
+                                            $type = $field['field_type'] ?? $field['type'] ?? 'text';
+                                            $name = $field['field_name'] ?? $field['name'] ?? '';
+                                            $label = $field['field_label'] ?? $field['label'] ?? '';
+                                            $placeholder = $field['field_placeholder'] ?? $field['placeholder'] ?? '';
+                                            $help = $field['field_help'] ?? $field['help'] ?? '';
+                                            $default = $field['field_default'] ?? $field['default'] ?? '';
+
+                                            $options = $field['field_options'] ?? $field['options'] ?? [];
+                                            $fieldSettings = $field['field_settings'] ?? $field['settings'] ?? [];
+                                            $styles = $field['style_settings'] ?? $field['styles'] ?? [];
+                                            $validation = $field['validation_rules'] ?? $field['validation'] ?? [];
+
+                                            $optionsText = is_array($options) ? implode("\n", $options) : '';
+                                            ?>
+                                            <div class="cf-field-panel" data-field-id="<?= esc_html($fieldId); ?>" data-type="<?= esc_html($type); ?>">
+                                                <div class="cf-field-header">
+                                                    <span class="cf-handle"><i class="fa fa-arrows"></i></span>
+                                                    <strong class="cf-field-title"><?= esc_html($label ?: $name ?: ucfirst($type)); ?></strong>
+                                                    <span class="label label-default"><?= esc_html($type); ?></span>
+
+                                                    <div class="pull-right">
+                                                        <button type="button" class="btn btn-xs btn-default cf-toggle" aria-expanded="true">
+                                                            <i class="fa fa-chevron-down"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-xs btn-default cf-clone"><?=esc_html__('Clone', $r['id']);?></button>
+                                                        <button type="button" class="btn btn-xs btn-danger cf-remove"><?=esc_html__('Remove', $r['id']);?></button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cf-field-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label><?=esc_html__('Field Name', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-name" value="<?= esc_html($name); ?>">
+                                                                <p class="help-block"><?=esc_html__('Used as the attribute key.', $r['id']);?></p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label><?=esc_html__('Label', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-label" value="<?= esc_html($label); ?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label><?=esc_html__('Placeholder', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-placeholder" value="<?= esc_html($placeholder); ?>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label><?=esc_html__('Default Value', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-default" value="<?= esc_html($default); ?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label><?=esc_html__('Help Text', $r['id']);?></label>
+                                                        <textarea class="form-control cf-help" rows="2"><?= esc_html($help); ?></textarea>
+                                                    </div>
+
+                                                    <div class="cf-field-flags">
+                                                        <label><input type="checkbox" class="cf-required" <?= !empty($fieldSettings['required']) ? 'checked' : ''; ?>> <?=esc_html__('Required', $r['id']);?></label>
+                                                        <label><input type="checkbox" class="cf-hidden" <?= !empty($fieldSettings['hidden']) ? 'checked' : ''; ?>> <?=esc_html__('Hidden', $r['id']);?></label>
+                                                        <label><input type="checkbox" class="cf-readonly" <?= !empty($fieldSettings['readonly']) ? 'checked' : ''; ?>> <?=esc_html__('Readonly', $r['id']);?></label>
+                                                        <label><input type="checkbox" class="cf-disabled" <?= !empty($fieldSettings['disabled']) ? 'checked' : ''; ?>> <?=esc_html__('Disabled', $r['id']);?></label>
+                                                    </div>
+
+                                                    <hr>
+
+                                                    <div class="cf-appearance-wrapper">
+                                                        <h5><?=esc_html__('Appearance', $r['id']);?></h5>
+
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <label><?=esc_html__('Width', $r['id']);?></label>
+                                                                <select class="form-control cf-style-width">
+                                                                    <option value=""><?=esc_html__('Default', $r['id']);?></option>
+                                                                    <option value="25">25%</option>
+                                                                    <option value="33">33%</option>
+                                                                    <option value="50">50%</option>
+                                                                    <option value="66">66%</option>
+                                                                    <option value="75">75%</option>
+                                                                    <option value="100">100%</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label><?=esc_html__('Label Color', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-style-label-color" placeholder="#333333">
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label><?=esc_html__('Input Background', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-style-input-background" placeholder="#ffffff">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row" style="margin-top:10px;">
+                                                            <div class="col-md-4">
+                                                                <label><?=esc_html__('Text Color', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-style-text-color my-colorpicker1" placeholder="#333333">
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label><?=esc_html__('Border Radius', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-style-border-radius" placeholder="4px">
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <label><?=esc_html__('Font Size', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-style-font-size" placeholder="16px">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row" style="margin-top:10px;">
+                                                            <div class="col-md-6">
+                                                                <label><?=esc_html__('Google Font', $r['id']);?></label>
+                                                                <select class="form-control cf-style-google-font">
+                                                                    <option value="">Default</option>
+                                                                    <option value="Inter">Inter</option>
+                                                                    <option value="Roboto">Roboto</option>
+                                                                    <option value="Open Sans">Open Sans</option>
+                                                                    <option value="Lato">Lato</option>
+                                                                    <option value="Montserrat">Montserrat</option>
+                                                                    <option value="Poppins">Poppins</option>
+                                                                    <option value="Nunito">Nunito</option>
+                                                                    <option value="Raleway">Raleway</option>
+                                                                    <option value="Merriweather">Merriweather</option>
+                                                                    <option value="Playfair Display">Playfair Display</option>
+                                                                    <option value="Source Sans 3">Source Sans 3</option>
+                                                                    <option value="Oswald">Oswald</option>
+                                                                    <option value="Rubik">Rubik</option>
+                                                                    <option value="DM Sans">DM Sans</option>
+                                                                    <option value="Fira Sans">Fira Sans</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label><?=esc_html__('CSS Class', $r['id']);?></label>
+                                                                <input type="text" class="form-control cf-style-class" placeholder="custom-field-class">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr>
+
+                                                    <div class="cf-conditional-wrapper">
+                                                        <h5><?=esc_html__('Conditional Logic', $r['id']);?></h5>
+
+                                                        <label>
+                                                            <input type="checkbox" class="cf-conditional-enabled">
+                                                            <?=esc_html__('Enable conditional logic', $r['id']);?>
+                                                        </label>
+
+                                                        <div class="cf-conditional-settings hidden">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label><?=esc_html__('Action', $r['id']);?></label>
+                                                                    <select class="form-control cf-conditional-action">
+                                                                        <option value="show"><?=esc_html__('Show this field if', $r['id']);?></option>
+                                                                        <option value="hide"><?=esc_html__('Hide this field if', $r['id']);?></option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <label><?=esc_html__('Logic', $r['id']);?></label>
+                                                                    <select class="form-control cf-conditional-logic">
+                                                                        <option value="all"><?=esc_html__('All rules match', $r['id']);?></option>
+                                                                        <option value="any"><?=esc_html__('Any rule matches', $r['id']);?></option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="cf-conditional-rules"></div>
+
+                                                            <button type="button" class="btn btn-xs btn-default cf-add-condition-rule">
+                                                                <?=esc_html__('Add Rule', $r['id']);?>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="cf-nested-wrapper <?= in_array($type, ['repeater', 'flexible_content'], true) ? '' : 'hidden'; ?>">
+                                                        <hr>
+                                                        <h5><?=esc_html__('Nested Fields', $r['id']);?></h5>
+                                                        <p class="text-muted"><?=esc_html__('Nested builder support can be wired here for repeater and flexible content fields.', $r['id']);?></p>
+                                                        <div class="cf-nested-drop-zone"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+
+                                    <input type="hidden" name="fields_json" id="fields-json">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><?=esc_html('Publish', $r['id']);?></h3>
+                        </div>
+
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label><?=esc_html__('Status', $r['id']);?></label>
+                                <select name="status" class="form-control">
+                                    <option value="active" <?= Checker::selected($group['status'] ?? 'active', 'active'); ?>><?=esc_html__('Active', $r['id']);?></option>
+                                    <option value="inactive" <?= Checker::selected($group['status'] ?? '', 'inactive'); ?>><?=esc_html__('Inactive', $r['id']);?></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><?=esc_html__('Field Order', $r['id']);?></label>
+                                <input type="number" name="field_order" class="form-control" value="<?= esc_html($group['field_order'] ?? 0); ?>">
+                            </div>
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fa fa-save"></i>
+                                <?= $isEditing ? esc_html__('Update Field Group', $r['id']) : esc_html__('Create Field Group', $r['id']); ?>
+                            </button>
+
+                            <a href="<?= admin_url('plugin/custom-fields/'); ?>" class="btn btn-default btn-block">
+                                <?=esc_html__('Cancel', $r['id']);?>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><?=esc_html__('Location Rules', $r['id']);?></h3>
+                        </div>
+
+                        <div class="box-body">
+                            <label><?=esc_html__('Show this field group on:', $r['id']);?></label>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="location[]" value="product" <?= Checker::checked($location, 'product'); ?>>
+                                    <?=esc_html__('Products', $r['id']);?>
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="location[]" value="user" <?= Checker::checked($location, 'user'); ?>>
+                                    <?=esc_html__('Users', $r['id']);?>
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="location[]" value="content" <?= Checker::checked($location, 'content'); ?>>
+                                    <?=esc_html__('All Content', $r['id']);?>
+                                </label>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group">
+                                <label><?=esc_html__('Specific Content Types', $r['id']);?></label>
+                                <select name="content_types[]" class="form-control select2" multiple>
+                                    <?php foreach ($contentTypes as $type): ?>
+                                        <?php
+                                        $slug = is_array($type) ? ($type['slug'] ?? '') : (string) $type;
+                                        $title = is_array($type) ? ($type['title'] ?? $slug) : (string) $type;
+                                        ?>
+                                        <option value="<?= esc_html($slug); ?>" <?= Checker::contentTypeChecked($location, $slug); ?>>
+                                            <?= esc_html($title); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box box-warning">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><?=esc_html__('Display Settings', $r['id']);?></h3>
+                        </div>
+
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label><?=esc_html__('Position', $r['id']);?></label>
+                                <select name="position" class="form-control">
+                                    <option value="extended" <?= Checker::selected($settings['position'] ?? 'extended', 'extended'); ?>><?=esc_html__('Extended', $r['id']);?></option>
+                                    <option value="side" <?= Checker::selected($settings['position'] ?? '', 'side'); ?>><?=esc_html__('Side', $r['id']);?></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><?=esc_html__('Style', $r['id']);?></label>
+                                <select name="style" class="form-control">
+                                    <option value="default" <?= Checker::selected($settings['style'] ?? 'default', 'default'); ?>><?=esc_html__('Default', $r['id']);?></option>
+                                    <option value="seamless" <?= Checker::selected($settings['style'] ?? '', 'seamless'); ?>><?=esc_html__('Seamless', $r['id']);?></option>
+                                    <option value="compact" <?= Checker::selected($settings['style'] ?? '', 'compact'); ?>><?=esc_html__('Compact', $r['id']);?></option>
+                                    <option value="elevated" <?= Checker::selected($settings['style'] ?? '', 'elevated'); ?>><?=esc_html__('Elevated', $r['id']);?></option>
+                                    <option value="outline" <?= Checker::selected($settings['style'] ?? '', 'outline'); ?>><?=esc_html__('Outline', $r['id']);?></option>
+                                    <option value="muted" <?= Checker::selected($settings['style'] ?? '', 'muted'); ?>><?=esc_html__('Muted', $r['id']);?></option>
+                                    <option value="dark" <?= Checker::selected($settings['style'] ?? '', 'dark'); ?>><?=esc_html__('Dark', $r['id']);?></option>
+                                    <option value="glass" <?= Checker::selected($settings['style'] ?? '', 'glass'); ?>><?=esc_html__('Glass', $r['id']);?></option>
+                                    <option value="minimal" <?= Checker::selected($settings['style'] ?? '', 'minimal'); ?>><?=esc_html__('Minimal', $r['id']);?></option>
+                                    <option value="floating" <?= Checker::selected($settings['style'] ?? '', 'floating'); ?>><?=esc_html__('Floating', $r['id']);?></option>
+                                    <option value="split-header" <?= Checker::selected($settings['style'] ?? '', 'split-header'); ?>><?=esc_html__('Split Header', $r['id']);?></option>
+                                    <option value="borderless" <?= Checker::selected($settings['style'] ?? '', 'borderless'); ?>><?=esc_html__('Borderless', $r['id']);?></option>
+                                    <option value="rounded" <?= Checker::selected($settings['style'] ?? '', 'rounded'); ?>><?=esc_html__('Rounded', $r['id']);?></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+    <script>
+        window.DevflowCustomFields = window.DevflowCustomFields || {};
+        window.DevflowCustomFields.savedFields = <?= json_encode($fields, JSON_THROW_ON_ERROR); ?>;
+    </script>
+<?php }); ?>

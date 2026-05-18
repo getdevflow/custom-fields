@@ -1,0 +1,770 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Fields\n"
+"POT-Creation-Date: 2026-05-17 22:25-0600\n"
+"PO-Revision-Date: 2026-05-17 22:25-0600\n"
+"Last-Translator: \n"
+"Language-Team: Joshua Parker\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: custom-fields\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: "
+"t__;esc_html__;trans;trans_html;trans_attr;esc_attr__\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: Helper\n"
+"X-Poedit-SearchPath-1: Controller\n"
+"X-Poedit-SearchPath-2: Domain\n"
+"X-Poedit-SearchPath-3: Service\n"
+"X-Poedit-SearchPath-4: view\n"
+"X-Poedit-SearchPathExcluded-0: locale\n"
+"X-Poedit-SearchPathExcluded-1: public\n"
+
+#: Controller/AjaxFieldController.php:112
+#, fuzzy
+msgid ""
+"Field name may only contain letters, numbers, and underscores, and cannot "
+"start with a number."
+msgstr "字段名只能包含字母、数字和下划线，且不能以数字开头。"
+
+#: Controller/AjaxFieldController.php:142
+#, fuzzy
+msgid "Field group title is required."
+msgstr "需要现场组称号。"
+
+#: Controller/AjaxFieldController.php:148
+#, fuzzy
+msgid "Add at least one field to this field group."
+msgstr "至少在这个字段组中添加一个字段。"
+
+#: Controller/AjaxFieldController.php:153
+#, fuzzy
+msgid "Each field requires a field name."
+msgstr "每个字段都需要字段名称。"
+
+#: Controller/AjaxFieldController.php:158
+#, fuzzy, php-format
+msgid "Field \"%s\" has an invalid name."
+msgstr "字段“%s”的名称无效。"
+
+#: Controller/AjaxFieldController.php:162
+#, fuzzy, php-format
+msgid "Field \"%s\" has an invalid field type."
+msgstr "字段“%s”字段类型无效。"
+
+#: Controller/AjaxFieldController.php:173
+#, fuzzy
+msgid "The field group data is invalid JSON."
+msgstr "字段组数据是无效的JSON。"
+
+#: Controller/AjaxFieldController.php:193
+msgid "Please enter a URL."
+msgstr "请输入一个 URL。"
+
+#: Controller/AjaxFieldController.php:200
+msgid "Please enter a valid URL."
+msgstr "请输入有效网址。"
+
+#: Controller/AjaxFieldController.php:251
+msgid "Embed URL"
+msgstr "嵌入网址"
+
+#: Controller/AjaxFieldController.php:278
+#, fuzzy
+msgid "No image was uploaded."
+msgstr "没有上传任何图片。"
+
+#: Controller/AjaxFieldController.php:285
+#, fuzzy
+msgid "The image upload failed."
+msgstr "图片上传失败了。"
+
+#: Controller/AjaxFieldController.php:294
+#, fuzzy
+msgid "Only image uploads are allowed."
+msgstr "只允许上传图片。"
+
+#: Controller/FieldGroupController.php:44
+#, fuzzy
+msgid "Custom Field Groups"
+msgstr "自定义字段组"
+
+#: Controller/FieldGroupController.php:58
+msgid "Add Field Group"
+msgstr "添加字段组"
+
+#: Controller/FieldGroupController.php:77
+#, fuzzy
+msgid "Field group created successfully."
+msgstr "现场组成功组建。"
+
+#: Controller/FieldGroupController.php:93
+#: Controller/FieldGroupController.php:217
+#, fuzzy
+msgid "Field group not found."
+msgstr "未找到现场小组。"
+
+#: Controller/FieldGroupController.php:99
+msgid "Edit Field Group"
+msgstr "编辑字段组"
+
+#: Controller/FieldGroupController.php:118
+#, fuzzy
+msgid "Field group updated successfully."
+msgstr "现场组已成功更新。"
+
+#: Controller/FieldGroupController.php:130
+#, fuzzy
+msgid "Field group deleted successfully."
+msgstr "现场组已成功删除。"
+
+#: Controller/FieldGroupController.php:146
+#, fuzzy
+msgid "Unable to clone field group."
+msgstr "无法克隆野战队。"
+
+#: Controller/FieldGroupController.php:151
+#, fuzzy
+msgid "Field group cloned successfully."
+msgstr "现场组成功克隆。"
+
+#: Controller/FieldGroupController.php:163
+#, fuzzy
+msgid "Untitled Field Group"
+msgstr "无题田野组"
+
+#: Controller/FieldGroupController.php:247
+#, fuzzy
+msgid "Import Field Group"
+msgstr "进口现场组"
+
+#: Controller/FieldGroupController.php:262
+#, fuzzy
+msgid "Please upload a valid JSON export file."
+msgstr "请上传一个有效的JSON导出文件。"
+
+#: Controller/FieldGroupController.php:272
+#, fuzzy
+msgid "The uploaded file is not valid JSON."
+msgstr "上传的文件不是有效的JSON。"
+
+#: Controller/FieldGroupController.php:281
+#, fuzzy
+msgid "The bundle does not contain any field groups."
+msgstr "丛中不包含任何域群。"
+
+#: Controller/FieldGroupController.php:290
+#, fuzzy
+msgid "Field group bundle imported successfully."
+msgstr "现场组捆绑包导入成功。"
+
+#: Controller/FieldGroupController.php:296
+#, fuzzy
+msgid "This file is not a valid Devflow Custom Fields export."
+msgstr "这个文件不是有效的 Devflow 自定义字段导出文件。"
+
+#: Controller/FieldGroupController.php:303
+#, fuzzy
+msgid "Field group imported successfully."
+msgstr "现场小组成功进口。"
+
+#: Controller/FieldGroupController.php:322
+#, fuzzy
+msgid "Please select at least one field group."
+msgstr "请至少选择一个实地小组。"
+
+#: Controller/FieldGroupController.php:342
+#, fuzzy
+msgid "Selected field groups deleted."
+msgstr "已删除的字段组。"
+
+#: Controller/FieldGroupController.php:345
+#, fuzzy
+msgid "Selected field groups activated."
+msgstr "部分现场小组已激活。"
+
+#: Controller/FieldGroupController.php:348
+#, fuzzy
+msgid "Selected field groups deactivated."
+msgstr "部分现场小组已停用。"
+
+#: Controller/FieldGroupController.php:351
+#, fuzzy
+msgid "Please select a valid bulk action."
+msgstr "请选择有效的批量行动。"
+
+#: Controller/SettingsController.php:33
+msgid "Custom Fields Settings"
+msgstr "自定义字段设置"
+
+#: Controller/SettingsController.php:68
+#, fuzzy
+msgid "Custom Fields settings updated successfully."
+msgstr "自定义字段设置已成功更新。"
+
+#: Domain/FieldRenderer.php:873
+#, fuzzy
+msgid "Paste a YouTube, Vimeo, or supported embed URL"
+msgstr "粘贴YouTube、Vimeo或支持的嵌入URL。"
+
+#: Domain/FieldRenderer.php:936
+#, fuzzy
+msgid "Drop image here or click to upload"
+msgstr "请在此放置图片或点击上传"
+
+#: Domain/FieldTypeRegistry.php:20
+msgid "Text"
+msgstr "文本"
+
+#: Domain/FieldTypeRegistry.php:22 Domain/FieldTypeRegistry.php:30
+#: Domain/FieldTypeRegistry.php:38 Domain/FieldTypeRegistry.php:46
+#: Domain/FieldTypeRegistry.php:54 Domain/FieldTypeRegistry.php:62
+msgid "Basic"
+msgstr "基本"
+
+#: Domain/FieldTypeRegistry.php:28
+msgid "Textarea"
+msgstr "文本区域"
+
+#: Domain/FieldTypeRegistry.php:36
+msgid "Rich Text"
+msgstr "富文本"
+
+#: Domain/FieldTypeRegistry.php:44
+#, fuzzy
+msgid "Email"
+msgstr "电子邮件"
+
+#: Domain/FieldTypeRegistry.php:52
+msgid "Password"
+msgstr "密码"
+
+#: Domain/FieldTypeRegistry.php:60
+msgid "Telephone"
+msgstr "电话"
+
+#: Domain/FieldTypeRegistry.php:68
+msgid "Select Dropdown"
+msgstr "选择下拉菜单"
+
+#: Domain/FieldTypeRegistry.php:70 Domain/FieldTypeRegistry.php:78
+#: Domain/FieldTypeRegistry.php:86
+msgid "Choices"
+msgstr "选择"
+
+#: Domain/FieldTypeRegistry.php:76
+msgid "Checklist"
+msgstr "清单"
+
+#: Domain/FieldTypeRegistry.php:84
+msgid "Radio Buttons"
+msgstr "单选按钮"
+
+#: Domain/FieldTypeRegistry.php:92
+msgid "Gallery"
+msgstr "画廊"
+
+#: Domain/FieldTypeRegistry.php:94 Domain/FieldTypeRegistry.php:102
+#: Domain/FieldTypeRegistry.php:110
+msgid "Media"
+msgstr "媒体"
+
+#: Domain/FieldTypeRegistry.php:100
+#, fuzzy
+msgid "Image"
+msgstr "图片"
+
+#: Domain/FieldTypeRegistry.php:116
+msgid "Repeater"
+msgstr "重复"
+
+#: Domain/FieldTypeRegistry.php:118 Domain/FieldTypeRegistry.php:126
+#: Domain/FieldTypeRegistry.php:142 Domain/FieldTypeRegistry.php:151
+msgid "Structure"
+msgstr "结构"
+
+#: Domain/FieldTypeRegistry.php:124
+msgid "Flexible Content"
+msgstr "灵活的内容"
+
+#: Domain/FieldTypeRegistry.php:132
+msgid "Help Text"
+msgstr "帮助文本"
+
+#: Domain/FieldTypeRegistry.php:134
+msgid "Utility"
+msgstr "工具"
+
+#: Domain/FieldTypeRegistry.php:140
+#, fuzzy
+msgid "2 Column Container"
+msgstr "双柱容器"
+
+#: Domain/FieldTypeRegistry.php:149
+#, fuzzy
+msgid "3 Column Container"
+msgstr "三柱容器"
+
+#: view/import.phtml:22 view/import.phtml:34 view/index.phtml:120
+#: view/index.phtml:134 view/settings.phtml:31 view/settings.phtml:43
+#: view/update.phtml:51 view/update.phtml:66
+msgid "Custom Fields"
+msgstr "自定义字段"
+
+#: view/import.phtml:24 view/index.phtml:122 view/settings.phtml:42
+#: view/settings.phtml:49 view/update.phtml:53
+msgid "Settings"
+msgstr "设置"
+
+#: view/import.phtml:25 view/index.phtml:124 view/settings.phtml:34
+#: view/update.phtml:56
+msgid "Create"
+msgstr "创建"
+
+#: view/import.phtml:26 view/import.phtml:65 view/index.phtml:264
+#: view/settings.phtml:35 view/settings.phtml:109 view/update.phtml:58
+#: view/update.phtml:473
+msgid "Cancel"
+msgstr "取消"
+
+#: view/import.phtml:38 view/index.phtml:137 view/settings.phtml:47
+#: view/update.phtml:70
+msgid "Dashboard"
+msgstr "仪表盘"
+
+#: view/import.phtml:39 view/index.phtml:132 view/index.phtml:138
+#: view/settings.phtml:48 view/update.phtml:71
+msgid "Field Groups"
+msgstr "字段组"
+
+#: view/import.phtml:40 view/index.phtml:123 view/settings.phtml:33
+#: view/update.phtml:54
+msgid "Import"
+msgstr "导入"
+
+#: view/import.phtml:49
+#, fuzzy
+msgid "Upload Export File"
+msgstr "上传导出文件"
+
+#: view/import.phtml:54
+#, fuzzy
+msgid "Field Group JSON File"
+msgstr "字段组 JSON 文件"
+
+#: view/import.phtml:56
+#, fuzzy
+msgid "Upload a JSON file exported from Devflow Custom Fields."
+msgstr "上传从 Devflow 自定义字段导出的 JSON 文件。"
+
+#: view/index.phtml:158
+msgid "Bulk Actions"
+msgstr "批量操作"
+
+#: view/index.phtml:159
+msgid "Set Active"
+msgstr "设置活动"
+
+#: view/index.phtml:160
+msgid "Set Inactive"
+msgstr "设为不活动"
+
+#: view/index.phtml:161
+msgid "Export Selected"
+msgstr "导出所选"
+
+#: view/index.phtml:162 view/index.phtml:272
+msgid "Delete"
+msgstr "删除"
+
+#: view/index.phtml:168
+msgid "Apply"
+msgstr "应用"
+
+#: view/index.phtml:179 view/index.phtml:219 view/update.phtml:98
+msgid "Title"
+msgstr "标题"
+
+#: view/index.phtml:180 view/index.phtml:220
+#, fuzzy
+msgid "Used On"
+msgstr "使用"
+
+#: view/index.phtml:181 view/index.phtml:221
+#, fuzzy
+msgid "Order"
+msgstr "秩序"
+
+#: view/index.phtml:182 view/index.phtml:222 view/update.phtml:453
+msgid "Status"
+msgstr "状态"
+
+#: view/index.phtml:203
+msgid "Edit"
+msgstr "编辑"
+
+#: view/index.phtml:204 view/update.phtml:261
+msgid "Clone"
+msgstr "克隆"
+
+#: view/index.phtml:205
+msgid "Export"
+msgstr "导出"
+
+#: view/index.phtml:244
+msgid "Confirm Delete"
+msgstr "确认删除"
+
+#: view/index.phtml:250
+#, fuzzy
+msgid "Are you sure you want to delete the selected field groups?"
+msgstr "你确定要删除选中的字段组吗？"
+
+#: view/index.phtml:254
+msgid "This action cannot be undone."
+msgstr "这个操作无法撤销。"
+
+#: view/settings.phtml:62
+msgid "General Settings"
+msgstr "常规设置"
+
+#: view/settings.phtml:74
+#, fuzzy
+msgid "Uninstall custom fields data when this plugin is deactivated."
+msgstr "当该插件停用时，请卸载自定义字段数据。"
+
+#: view/settings.phtml:78
+#, fuzzy
+msgid ""
+"Warning: this can remove field groups, fields, and plugin settings during "
+"deactivation."
+msgstr "警告：这可能会在停用时移除字段组、字段和插件设置。"
+
+#: view/settings.phtml:85
+#, fuzzy
+msgid "Default Gallery Preview Size"
+msgstr "默认图库预览尺寸"
+
+#: view/settings.phtml:87
+msgid "Small"
+msgstr "小"
+
+#: view/settings.phtml:88
+msgid "Medium"
+msgstr "中"
+
+#: view/settings.phtml:89
+#, fuzzy
+msgid "Large"
+msgstr "大型"
+
+#: view/settings.phtml:94
+#, fuzzy
+msgid "Default Field Style"
+msgstr "默认字段样式"
+
+#: view/settings.phtml:96 view/update.phtml:321 view/update.phtml:543
+msgid "Default"
+msgstr "默认"
+
+#: view/settings.phtml:97 view/update.phtml:545
+msgid "Compact"
+msgstr "紧凑"
+
+#: view/settings.phtml:98
+msgid "Comfortable"
+msgstr "舒适"
+
+#: view/settings.phtml:105
+msgid "Save Settings"
+msgstr "保存设置"
+
+#: view/update.phtml:72
+#, fuzzy
+msgid "Field Group Builder"
+msgstr "字段组 JSON 文件"
+
+#: view/update.phtml:93
+msgid "Field Group"
+msgstr "字段组"
+
+#: view/update.phtml:140
+msgid "Other"
+msgstr "其他"
+
+#: view/update.phtml:147
+msgid "Field Types"
+msgstr "字段类型"
+
+#: view/update.phtml:204
+#, fuzzy
+msgid "No field types found"
+msgstr "未发现字段类型"
+
+#: view/update.phtml:213
+#, fuzzy
+msgid "Drag field types into this area. Sort fields by dragging them."
+msgstr "把场类型拖到这个区域。通过拖拽字段来排序。"
+
+#: view/update.phtml:218
+msgid "Expand All"
+msgstr "全部展开"
+
+#: view/update.phtml:222
+msgid "Collapse All"
+msgstr "全部折叠"
+
+#: view/update.phtml:230
+#, fuzzy
+msgid "Drag fields here to build this field group."
+msgstr "把字段拖到这里来构建这个字段组。"
+
+#: view/update.phtml:262
+msgid "Remove"
+msgstr "删除"
+
+#: view/update.phtml:270
+msgid "Field Name"
+msgstr "字段名称"
+
+#: view/update.phtml:272
+#, fuzzy
+msgid "Used as the attribute key."
+msgstr "用作属性键。"
+
+#: view/update.phtml:278
+msgid "Label"
+msgstr "标签"
+
+#: view/update.phtml:287
+msgid "Placeholder"
+msgstr "占位符"
+
+#: view/update.phtml:294
+msgid "Default Value"
+msgstr "默认值"
+
+#: view/update.phtml:306
+#, fuzzy
+msgid "Required"
+msgstr "必修"
+
+#: view/update.phtml:307
+msgid "Hidden"
+msgstr "隐藏"
+
+#: view/update.phtml:308
+msgid "Readonly"
+msgstr "只读"
+
+#: view/update.phtml:309
+msgid "Disabled"
+msgstr "禁用"
+
+#: view/update.phtml:315
+msgid "Appearance"
+msgstr "外观"
+
+#: view/update.phtml:319
+msgid "Width"
+msgstr "宽度"
+
+#: view/update.phtml:332
+msgid "Label Color"
+msgstr "标签颜色"
+
+#: view/update.phtml:337
+msgid "Input Background"
+msgstr "输入背景"
+
+#: view/update.phtml:344
+msgid "Text Color"
+msgstr "文本颜色"
+
+#: view/update.phtml:349
+msgid "Border Radius"
+msgstr "边框半径"
+
+#: view/update.phtml:354
+msgid "Font Size"
+msgstr "字体大小"
+
+#: view/update.phtml:361
+msgid "Google Font"
+msgstr "谷歌字体"
+
+#: view/update.phtml:383
+msgid "CSS Class"
+msgstr "CSS类"
+
+#: view/update.phtml:392
+msgid "Conditional Logic"
+msgstr "条件逻辑"
+
+#: view/update.phtml:396
+msgid "Enable conditional logic"
+msgstr "启用条件逻辑"
+
+#: view/update.phtml:402
+#, fuzzy
+msgid "Action"
+msgstr "行动"
+
+#: view/update.phtml:404
+msgid "Show this field if"
+msgstr "显示此字段组的条件"
+
+#: view/update.phtml:405
+msgid "Hide this field if"
+msgstr "隐藏此字段"
+
+#: view/update.phtml:410
+msgid "Logic"
+msgstr "逻辑"
+
+#: view/update.phtml:412
+msgid "All rules match"
+msgstr "所有规则匹配"
+
+#: view/update.phtml:413
+msgid "Any rule matches"
+msgstr "任何规则匹配项"
+
+#: view/update.phtml:421
+msgid "Add Rule"
+msgstr "添加规则"
+
+#: view/update.phtml:428
+#, fuzzy
+msgid "Nested Fields"
+msgstr "嵌套场"
+
+#: view/update.phtml:429
+#, fuzzy
+msgid ""
+"Nested builder support can be wired here for repeater and flexible content "
+"fields."
+msgstr "这里可以为中继和灵活的内容字段设置嵌套构建器支持。"
+
+#: view/update.phtml:455
+#, fuzzy
+msgid "Active"
+msgstr "活跃"
+
+#: view/update.phtml:456
+msgid "Inactive"
+msgstr "未激活"
+
+#: view/update.phtml:461
+msgid "Field Order"
+msgstr "字段排序"
+
+#: view/update.phtml:469
+#, fuzzy
+msgid "Update Field Group"
+msgstr "更新现场组"
+
+#: view/update.phtml:469
+#, fuzzy
+msgid "Create Field Group"
+msgstr "创建字段组"
+
+#: view/update.phtml:480
+msgid "Location Rules"
+msgstr "位置规则"
+
+#: view/update.phtml:484
+#, fuzzy
+msgid "Show this field group on:"
+msgstr "展示该实地组："
+
+#: view/update.phtml:489
+msgid "Products"
+msgstr "产品"
+
+#: view/update.phtml:496
+msgid "Users"
+msgstr "用户"
+
+#: view/update.phtml:503
+msgid "All Content"
+msgstr "所有内容"
+
+#: view/update.phtml:510
+#, fuzzy
+msgid "Specific Content Types"
+msgstr "具体内容类型"
+
+#: view/update.phtml:528
+msgid "Display Settings"
+msgstr "显示设置"
+
+#: view/update.phtml:533
+msgid "Position"
+msgstr "位置"
+
+#: view/update.phtml:535
+msgid "Extended"
+msgstr "扩展"
+
+#: view/update.phtml:536
+msgid "Side"
+msgstr "侧边"
+
+#: view/update.phtml:541
+msgid "Style"
+msgstr "样式"
+
+#: view/update.phtml:544
+#, fuzzy
+msgid "Seamless"
+msgstr "无缝"
+
+#: view/update.phtml:546
+msgid "Elevated"
+msgstr "较高"
+
+#: view/update.phtml:547
+msgid "Outline"
+msgstr "大纲"
+
+#: view/update.phtml:548
+#, fuzzy
+msgid "Muted"
+msgstr "静音"
+
+#: view/update.phtml:549
+msgid "Dark"
+msgstr "深色"
+
+#: view/update.phtml:550
+msgid "Glass"
+msgstr "玻璃"
+
+#: view/update.phtml:551
+msgid "Minimal"
+msgstr "最小"
+
+#: view/update.phtml:552
+msgid "Floating"
+msgstr "浮动"
+
+#: view/update.phtml:553
+msgid "Split Header"
+msgstr "拆分页头"
+
+#: view/update.phtml:554
+msgid "Borderless"
+msgstr "无边界"
+
+#: view/update.phtml:555
+msgid "Rounded"
+msgstr "圆角"
+
+#~ msgid "Plugin Options"
+#~ msgstr "插件选项"

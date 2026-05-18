@@ -1,0 +1,280 @@
+<?php
+
+use App\Application\Devflow;
+use App\Shared\Services\Registry;
+use Qubus\EventDispatcher\ActionFilter\Action;
+
+use function App\Shared\Helpers\admin_url;
+use function Qubus\Security\Helpers\esc_attr;
+use function Qubus\Security\Helpers\esc_html__;
+
+$this->parent('framework::backend/layouts/admin-layout');
+$this->block('backend', function ($params) {
+Registry::getInstance()->{'set'}('screen_parent', 'plugins');
+Registry::getInstance()->{'set'}('screen_child', 'custom-fields');
+
+$r = Registry::getInstance()->get('custom-fields');
+?>
+
+<script>
+    jQuery(function ($) {
+        function updateAllCheckboxes(state) {
+            $('.cf-row-check').prop('checked', state);
+            $('#cf-check-all').prop('checked', state);
+            $('#cf-check-all-footer').prop('checked', state);
+        }
+
+        $('#cf-check-all, #cf-check-all-footer').on('change', function () {
+            updateAllCheckboxes($(this).is(':checked'));
+        });
+
+        $('.cf-row-check').on('change', function () {
+            const total = $('.cf-row-check').length;
+            const checked = $('.cf-row-check:checked').length;
+
+            const allChecked = total > 0 && total === checked;
+
+            $('#cf-check-all').prop('checked', allChecked);
+            $('#cf-check-all-footer').prop('checked', allChecked);
+        });
+
+        $('#custom-fields-bulk-form').on('submit', function (e) {
+            const $form = $(this);
+
+            if ($form.data('confirmed') === true) {
+                return;
+            }
+
+            const action = $('[name="bulk_action"]').val();
+            const selected = $('.cf-row-check:checked').length;
+            const $modal = $('#cf-bulk-delete-modal');
+
+            if (!action) {
+                e.preventDefault();
+
+                alert('Please choose a bulk action.');
+
+                return;
+            }
+
+            if (selected === 0) {
+                e.preventDefault();
+
+                alert('Please select at least one field group.');
+
+                return;
+            }
+
+            if (action === 'delete') {
+                e.preventDefault();
+                $modal
+                    .css('z-index', 210000)
+                    .modal({
+                        backdrop: true,
+                        keyboard: true,
+                        show: true
+                    });
+
+                setTimeout(function () {
+                    $('.modal-backdrop')
+                        .last()
+                        .addClass('cf-bulk-delete-backdrop')
+                        .css('z-index', 209990);
+
+                    $modal.find('[data-dismiss="modal"], .btn-danger, .btn-default').first().focus();
+                }, 10);
+                return;
+            }
+        });
+
+        let cfPendingBulkSubmit = false;
+
+        $('#cf-confirm-bulk-delete').on('click', function () {
+            if (cfPendingBulkSubmit) {
+                return;
+            }
+
+            cfPendingBulkSubmit = true;
+
+            $('#cf-bulk-delete-modal').modal('hide');
+
+            $('#custom-fields-bulk-form')
+                .data('confirmed', true)
+                .trigger('submit');
+        });
+
+        $(document).on('keydown', function (event) {
+            if (event.key === 'Escape' && $('#cf-bulk-delete-modal').is(':visible')) {
+                $('#cf-bulk-delete-modal').modal('hide');
+            }
+        });
+    });
+</script>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <i class="fa fa-keyboard"></i>
+                <h3 class="box-title"><?=esc_html__('Custom Fields', $r['id']);?></h3>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-secondary" onclick="window.location='<?= admin_url('plugin/custom-fields/settings/');?>'"><i class="fa fa-cog"></i> <?=esc_html__('Settings', $r['id']);?></button>
+                    <button type="button" class="btn btn-primary" onclick="window.location='<?= admin_url('plugin/custom-fields/import/');?>'"><i class="fa fa-file-import"></i> <?=esc_html__('Import', $r['id']);?></button>
+                    <button type="button" class="btn btn-warning" onclick="window.location='<?= admin_url('plugin/custom-fields/create/');?>'"><i class="fa fa-plus"></i> <?=esc_html__('Create', $r['id']);?></button>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="content-header">
+            <h1>
+                <?=esc_html__('Field Groups', $r['id']);?>
+            </h1>
+            <small><?=esc_html__('Custom Fields', $r['id']);?></small>
+
+            <ol class="breadcrumb">
+                <li><a href="<?= admin_url(); ?>"><i class="fa fa-dashboard"></i> <?=esc_html__('Dashboard', $r['id']);?></a></li>
+                <li class="active"><?=esc_html__('Field Groups', $r['id']);?></li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <?php Action::getInstance()->doAction('admin_notices'); ?>
+
+            <?= Devflow::$PHP->flash->display(); ?>
+
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-default">
+                <div class="box-body">
+
+                    <form method="post" action="<?= admin_url('plugin/custom-fields/bulk/'); ?>" id="custom-fields-bulk-form">
+
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm-4">
+                                <select name="bulk_action" class="form-control input-sm">
+                                    <option value=""><?=esc_html__('Bulk Actions', $r['id']);?></option>
+                                    <option value="activate"><?=esc_html__('Set Active', $r['id']);?></option>
+                                    <option value="deactivate"><?=esc_html__('Set Inactive', $r['id']);?></option>
+                                    <option value="export"><?=esc_html__('Export Selected', $r['id']);?></option>
+                                    <option value="delete"><?=esc_html__('Delete', $r['id']);?></option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <?=esc_html__('Apply', $r['id']);?>
+                                </button>
+                            </div>
+                        </div>
+
+                        <table id="content" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th style="width:30px;">
+                                    <input type="checkbox" id="cf-check-all">
+                                </th>
+                                <th><?=esc_html__('Title', $r['id']);?></th>
+                                <th><?=esc_html__('Used On', $r['id']);?></th>
+                                <th><?=esc_html__('Order', $r['id']);?></th>
+                                <th><?=esc_html__('Status', $r['id']);?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($params['groups'] as $group): ?>
+                                <tr>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            name="field_group_ids[]"
+                                            value="<?= esc_attr($group['id']); ?>"
+                                            class="cf-row-check"
+                                        >
+                                    </td>
+                                    <td>
+                                        <strong>
+                                            <a href="<?= admin_url(sprintf('plugin/custom-fields/%s/edit/', $group['id'])); ?>">
+                                                <?= $group['title']; ?>
+                                            </a>
+                                        </strong>
+                                        <div class="row-actions">
+                                            <span><a href="<?= admin_url(sprintf('plugin/custom-fields/%s/edit/', $group['id'])); ?>"><?=esc_html__('Edit', $r['id']);?></a></span> |
+                                            <span><a href="<?= admin_url(sprintf('plugin/custom-fields/%s/clone/', $group['id'])); ?>"><?=esc_html__('Clone', $r['id']);?></a></span> |
+                                            <span><a href="<?= admin_url(sprintf('plugin/custom-fields/%s/export/', $group['id'])); ?>"><?=esc_html__('Export', $r['id']);?></a></span>
+                                        </div>
+                                    </td>
+                                    <td><?= implode(', ', $group['location'] ?? []); ?></td>
+                                    <td><?= (int) $group['field_order']; ?></td>
+                                    <td><?= ucfirst($group['status']); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th style="width:30px;">
+                                    <input type="checkbox" id="cf-check-all-footer">
+                                </th>
+                                <th><?=esc_html__('Title', $r['id']);?></th>
+                                <th><?=esc_html__('Used On', $r['id']);?></th>
+                                <th><?=esc_html__('Order', $r['id']);?></th>
+                                <th><?=esc_html__('Status', $r['id']);?></th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <div class="modal fade" id="cf-bulk-delete-modal" tabindex="-1" role="dialog" aria-labelledby="cf-bulk-delete-title">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <h4 class="modal-title" id="cf-bulk-delete-title">
+                        <?=esc_html__('Confirm Delete', $r['id']);?>
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>
+                        <?=esc_html__('Are you sure you want to delete the selected field groups?', $r['id']);?>
+                    </p>
+
+                    <p class="text-danger">
+                        <?=esc_html__('This action cannot be undone.', $r['id']);?>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button
+                            type="button"
+                            class="btn btn-default"
+                            data-dismiss="modal"
+                    >
+                        <?=esc_html__('Cancel', $r['id']);?>
+                    </button>
+
+                    <button
+                            type="button"
+                            class="btn btn-danger"
+                            id="cf-confirm-bulk-delete"
+                    >
+                        <i class="fa fa-trash"></i> <?=esc_html__('Delete', $r['id']);?>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+<?php }); ?>

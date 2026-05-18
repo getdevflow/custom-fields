@@ -1,0 +1,705 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Fields\n"
+"POT-Creation-Date: 2026-05-17 22:26-0600\n"
+"PO-Revision-Date: 2026-05-17 22:26-0600\n"
+"Last-Translator: \n"
+"Language-Team: Joshua Parker\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: custom-fields\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: "
+"t__;esc_html__;trans;trans_html;trans_attr;esc_attr__\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: Helper\n"
+"X-Poedit-SearchPath-1: Controller\n"
+"X-Poedit-SearchPath-2: Domain\n"
+"X-Poedit-SearchPath-3: Service\n"
+"X-Poedit-SearchPath-4: view\n"
+"X-Poedit-SearchPathExcluded-0: locale\n"
+"X-Poedit-SearchPathExcluded-1: public\n"
+
+#: Controller/AjaxFieldController.php:112
+msgid ""
+"Field name may only contain letters, numbers, and underscores, and cannot "
+"start with a number."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:142
+msgid "Field group title is required."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:148
+msgid "Add at least one field to this field group."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:153
+msgid "Each field requires a field name."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:158
+#, php-format
+msgid "Field \"%s\" has an invalid name."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:162
+#, php-format
+msgid "Field \"%s\" has an invalid field type."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:173
+msgid "The field group data is invalid JSON."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:193
+msgid "Please enter a URL."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:200
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:251
+msgid "Embed URL"
+msgstr ""
+
+#: Controller/AjaxFieldController.php:278
+msgid "No image was uploaded."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:285
+msgid "The image upload failed."
+msgstr ""
+
+#: Controller/AjaxFieldController.php:294
+msgid "Only image uploads are allowed."
+msgstr ""
+
+#: Controller/FieldGroupController.php:44
+msgid "Custom Field Groups"
+msgstr ""
+
+#: Controller/FieldGroupController.php:58
+msgid "Add Field Group"
+msgstr ""
+
+#: Controller/FieldGroupController.php:77
+msgid "Field group created successfully."
+msgstr ""
+
+#: Controller/FieldGroupController.php:93
+#: Controller/FieldGroupController.php:217
+msgid "Field group not found."
+msgstr ""
+
+#: Controller/FieldGroupController.php:99
+msgid "Edit Field Group"
+msgstr ""
+
+#: Controller/FieldGroupController.php:118
+msgid "Field group updated successfully."
+msgstr ""
+
+#: Controller/FieldGroupController.php:130
+msgid "Field group deleted successfully."
+msgstr ""
+
+#: Controller/FieldGroupController.php:146
+msgid "Unable to clone field group."
+msgstr ""
+
+#: Controller/FieldGroupController.php:151
+msgid "Field group cloned successfully."
+msgstr ""
+
+#: Controller/FieldGroupController.php:163
+msgid "Untitled Field Group"
+msgstr ""
+
+#: Controller/FieldGroupController.php:247
+msgid "Import Field Group"
+msgstr ""
+
+#: Controller/FieldGroupController.php:262
+msgid "Please upload a valid JSON export file."
+msgstr ""
+
+#: Controller/FieldGroupController.php:272
+msgid "The uploaded file is not valid JSON."
+msgstr ""
+
+#: Controller/FieldGroupController.php:281
+msgid "The bundle does not contain any field groups."
+msgstr ""
+
+#: Controller/FieldGroupController.php:290
+msgid "Field group bundle imported successfully."
+msgstr ""
+
+#: Controller/FieldGroupController.php:296
+msgid "This file is not a valid Devflow Custom Fields export."
+msgstr ""
+
+#: Controller/FieldGroupController.php:303
+msgid "Field group imported successfully."
+msgstr ""
+
+#: Controller/FieldGroupController.php:322
+msgid "Please select at least one field group."
+msgstr ""
+
+#: Controller/FieldGroupController.php:342
+msgid "Selected field groups deleted."
+msgstr ""
+
+#: Controller/FieldGroupController.php:345
+msgid "Selected field groups activated."
+msgstr ""
+
+#: Controller/FieldGroupController.php:348
+msgid "Selected field groups deactivated."
+msgstr ""
+
+#: Controller/FieldGroupController.php:351
+msgid "Please select a valid bulk action."
+msgstr ""
+
+#: Controller/SettingsController.php:33
+msgid "Custom Fields Settings"
+msgstr ""
+
+#: Controller/SettingsController.php:68
+msgid "Custom Fields settings updated successfully."
+msgstr ""
+
+#: Domain/FieldRenderer.php:873
+msgid "Paste a YouTube, Vimeo, or supported embed URL"
+msgstr ""
+
+#: Domain/FieldRenderer.php:936
+msgid "Drop image here or click to upload"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:20
+msgid "Text"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:22 Domain/FieldTypeRegistry.php:30
+#: Domain/FieldTypeRegistry.php:38 Domain/FieldTypeRegistry.php:46
+#: Domain/FieldTypeRegistry.php:54 Domain/FieldTypeRegistry.php:62
+msgid "Basic"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:28
+msgid "Textarea"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:36
+msgid "Rich Text"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:44
+msgid "Email"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:52
+msgid "Password"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:60
+msgid "Telephone"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:68
+msgid "Select Dropdown"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:70 Domain/FieldTypeRegistry.php:78
+#: Domain/FieldTypeRegistry.php:86
+msgid "Choices"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:76
+msgid "Checklist"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:84
+msgid "Radio Buttons"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:92
+msgid "Gallery"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:94 Domain/FieldTypeRegistry.php:102
+#: Domain/FieldTypeRegistry.php:110
+msgid "Media"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:100
+msgid "Image"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:116
+msgid "Repeater"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:118 Domain/FieldTypeRegistry.php:126
+#: Domain/FieldTypeRegistry.php:142 Domain/FieldTypeRegistry.php:151
+msgid "Structure"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:124
+msgid "Flexible Content"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:132
+msgid "Help Text"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:134
+msgid "Utility"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:140
+msgid "2 Column Container"
+msgstr ""
+
+#: Domain/FieldTypeRegistry.php:149
+msgid "3 Column Container"
+msgstr ""
+
+#: view/import.phtml:22 view/import.phtml:34 view/index.phtml:120
+#: view/index.phtml:134 view/settings.phtml:31 view/settings.phtml:43
+#: view/update.phtml:51 view/update.phtml:66
+msgid "Custom Fields"
+msgstr ""
+
+#: view/import.phtml:24 view/index.phtml:122 view/settings.phtml:42
+#: view/settings.phtml:49 view/update.phtml:53
+msgid "Settings"
+msgstr ""
+
+#: view/import.phtml:25 view/index.phtml:124 view/settings.phtml:34
+#: view/update.phtml:56
+msgid "Create"
+msgstr ""
+
+#: view/import.phtml:26 view/import.phtml:65 view/index.phtml:264
+#: view/settings.phtml:35 view/settings.phtml:109 view/update.phtml:58
+#: view/update.phtml:473
+msgid "Cancel"
+msgstr ""
+
+#: view/import.phtml:38 view/index.phtml:137 view/settings.phtml:47
+#: view/update.phtml:70
+msgid "Dashboard"
+msgstr ""
+
+#: view/import.phtml:39 view/index.phtml:132 view/index.phtml:138
+#: view/settings.phtml:48 view/update.phtml:71
+msgid "Field Groups"
+msgstr ""
+
+#: view/import.phtml:40 view/index.phtml:123 view/settings.phtml:33
+#: view/update.phtml:54
+msgid "Import"
+msgstr ""
+
+#: view/import.phtml:49
+msgid "Upload Export File"
+msgstr ""
+
+#: view/import.phtml:54
+msgid "Field Group JSON File"
+msgstr ""
+
+#: view/import.phtml:56
+msgid "Upload a JSON file exported from Devflow Custom Fields."
+msgstr ""
+
+#: view/index.phtml:158
+msgid "Bulk Actions"
+msgstr ""
+
+#: view/index.phtml:159
+msgid "Set Active"
+msgstr ""
+
+#: view/index.phtml:160
+msgid "Set Inactive"
+msgstr ""
+
+#: view/index.phtml:161
+msgid "Export Selected"
+msgstr ""
+
+#: view/index.phtml:162 view/index.phtml:272
+msgid "Delete"
+msgstr ""
+
+#: view/index.phtml:168
+msgid "Apply"
+msgstr ""
+
+#: view/index.phtml:179 view/index.phtml:219 view/update.phtml:98
+msgid "Title"
+msgstr ""
+
+#: view/index.phtml:180 view/index.phtml:220
+msgid "Used On"
+msgstr ""
+
+#: view/index.phtml:181 view/index.phtml:221
+msgid "Order"
+msgstr ""
+
+#: view/index.phtml:182 view/index.phtml:222 view/update.phtml:453
+msgid "Status"
+msgstr ""
+
+#: view/index.phtml:203
+msgid "Edit"
+msgstr ""
+
+#: view/index.phtml:204 view/update.phtml:261
+msgid "Clone"
+msgstr ""
+
+#: view/index.phtml:205
+msgid "Export"
+msgstr ""
+
+#: view/index.phtml:244
+msgid "Confirm Delete"
+msgstr ""
+
+#: view/index.phtml:250
+msgid "Are you sure you want to delete the selected field groups?"
+msgstr ""
+
+#: view/index.phtml:254
+msgid "This action cannot be undone."
+msgstr ""
+
+#: view/settings.phtml:62
+msgid "General Settings"
+msgstr ""
+
+#: view/settings.phtml:74
+msgid "Uninstall custom fields data when this plugin is deactivated."
+msgstr ""
+
+#: view/settings.phtml:78
+msgid ""
+"Warning: this can remove field groups, fields, and plugin settings during "
+"deactivation."
+msgstr ""
+
+#: view/settings.phtml:85
+msgid "Default Gallery Preview Size"
+msgstr ""
+
+#: view/settings.phtml:87
+msgid "Small"
+msgstr ""
+
+#: view/settings.phtml:88
+msgid "Medium"
+msgstr ""
+
+#: view/settings.phtml:89
+msgid "Large"
+msgstr ""
+
+#: view/settings.phtml:94
+msgid "Default Field Style"
+msgstr ""
+
+#: view/settings.phtml:96 view/update.phtml:321 view/update.phtml:543
+msgid "Default"
+msgstr ""
+
+#: view/settings.phtml:97 view/update.phtml:545
+msgid "Compact"
+msgstr ""
+
+#: view/settings.phtml:98
+msgid "Comfortable"
+msgstr ""
+
+#: view/settings.phtml:105
+msgid "Save Settings"
+msgstr ""
+
+#: view/update.phtml:72
+msgid "Field Group Builder"
+msgstr ""
+
+#: view/update.phtml:93
+msgid "Field Group"
+msgstr ""
+
+#: view/update.phtml:140
+msgid "Other"
+msgstr ""
+
+#: view/update.phtml:147
+msgid "Field Types"
+msgstr ""
+
+#: view/update.phtml:204
+msgid "No field types found"
+msgstr ""
+
+#: view/update.phtml:213
+msgid "Drag field types into this area. Sort fields by dragging them."
+msgstr ""
+
+#: view/update.phtml:218
+msgid "Expand All"
+msgstr ""
+
+#: view/update.phtml:222
+msgid "Collapse All"
+msgstr ""
+
+#: view/update.phtml:230
+msgid "Drag fields here to build this field group."
+msgstr ""
+
+#: view/update.phtml:262
+msgid "Remove"
+msgstr ""
+
+#: view/update.phtml:270
+msgid "Field Name"
+msgstr ""
+
+#: view/update.phtml:272
+msgid "Used as the attribute key."
+msgstr ""
+
+#: view/update.phtml:278
+msgid "Label"
+msgstr ""
+
+#: view/update.phtml:287
+msgid "Placeholder"
+msgstr ""
+
+#: view/update.phtml:294
+msgid "Default Value"
+msgstr ""
+
+#: view/update.phtml:306
+msgid "Required"
+msgstr ""
+
+#: view/update.phtml:307
+msgid "Hidden"
+msgstr ""
+
+#: view/update.phtml:308
+msgid "Readonly"
+msgstr ""
+
+#: view/update.phtml:309
+msgid "Disabled"
+msgstr ""
+
+#: view/update.phtml:315
+msgid "Appearance"
+msgstr ""
+
+#: view/update.phtml:319
+msgid "Width"
+msgstr ""
+
+#: view/update.phtml:332
+msgid "Label Color"
+msgstr ""
+
+#: view/update.phtml:337
+msgid "Input Background"
+msgstr ""
+
+#: view/update.phtml:344
+msgid "Text Color"
+msgstr ""
+
+#: view/update.phtml:349
+msgid "Border Radius"
+msgstr ""
+
+#: view/update.phtml:354
+msgid "Font Size"
+msgstr ""
+
+#: view/update.phtml:361
+msgid "Google Font"
+msgstr ""
+
+#: view/update.phtml:383
+msgid "CSS Class"
+msgstr ""
+
+#: view/update.phtml:392
+msgid "Conditional Logic"
+msgstr ""
+
+#: view/update.phtml:396
+msgid "Enable conditional logic"
+msgstr ""
+
+#: view/update.phtml:402
+msgid "Action"
+msgstr ""
+
+#: view/update.phtml:404
+msgid "Show this field if"
+msgstr ""
+
+#: view/update.phtml:405
+msgid "Hide this field if"
+msgstr ""
+
+#: view/update.phtml:410
+msgid "Logic"
+msgstr ""
+
+#: view/update.phtml:412
+msgid "All rules match"
+msgstr ""
+
+#: view/update.phtml:413
+msgid "Any rule matches"
+msgstr ""
+
+#: view/update.phtml:421
+msgid "Add Rule"
+msgstr ""
+
+#: view/update.phtml:428
+msgid "Nested Fields"
+msgstr ""
+
+#: view/update.phtml:429
+msgid ""
+"Nested builder support can be wired here for repeater and flexible content "
+"fields."
+msgstr ""
+
+#: view/update.phtml:455
+msgid "Active"
+msgstr ""
+
+#: view/update.phtml:456
+msgid "Inactive"
+msgstr ""
+
+#: view/update.phtml:461
+msgid "Field Order"
+msgstr ""
+
+#: view/update.phtml:469
+msgid "Update Field Group"
+msgstr ""
+
+#: view/update.phtml:469
+msgid "Create Field Group"
+msgstr ""
+
+#: view/update.phtml:480
+msgid "Location Rules"
+msgstr ""
+
+#: view/update.phtml:484
+msgid "Show this field group on:"
+msgstr ""
+
+#: view/update.phtml:489
+msgid "Products"
+msgstr ""
+
+#: view/update.phtml:496
+msgid "Users"
+msgstr ""
+
+#: view/update.phtml:503
+msgid "All Content"
+msgstr ""
+
+#: view/update.phtml:510
+msgid "Specific Content Types"
+msgstr ""
+
+#: view/update.phtml:528
+msgid "Display Settings"
+msgstr ""
+
+#: view/update.phtml:533
+msgid "Position"
+msgstr ""
+
+#: view/update.phtml:535
+msgid "Extended"
+msgstr ""
+
+#: view/update.phtml:536
+msgid "Side"
+msgstr ""
+
+#: view/update.phtml:541
+msgid "Style"
+msgstr ""
+
+#: view/update.phtml:544
+msgid "Seamless"
+msgstr ""
+
+#: view/update.phtml:546
+msgid "Elevated"
+msgstr ""
+
+#: view/update.phtml:547
+msgid "Outline"
+msgstr ""
+
+#: view/update.phtml:548
+msgid "Muted"
+msgstr ""
+
+#: view/update.phtml:549
+msgid "Dark"
+msgstr ""
+
+#: view/update.phtml:550
+msgid "Glass"
+msgstr ""
+
+#: view/update.phtml:551
+msgid "Minimal"
+msgstr ""
+
+#: view/update.phtml:552
+msgid "Floating"
+msgstr ""
+
+#: view/update.phtml:553
+msgid "Split Header"
+msgstr ""
+
+#: view/update.phtml:554
+msgid "Borderless"
+msgstr ""
+
+#: view/update.phtml:555
+msgid "Rounded"
+msgstr ""

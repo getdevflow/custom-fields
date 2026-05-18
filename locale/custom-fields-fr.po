@@ -1,0 +1,774 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Fields\n"
+"POT-Creation-Date: 2026-05-17 22:26-0600\n"
+"PO-Revision-Date: 2026-05-17 22:26-0600\n"
+"Last-Translator: \n"
+"Language-Team: Joshua Parker\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: custom-fields\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: "
+"t__;esc_html__;trans;trans_html;trans_attr;esc_attr__\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: Helper\n"
+"X-Poedit-SearchPath-1: Controller\n"
+"X-Poedit-SearchPath-2: Domain\n"
+"X-Poedit-SearchPath-3: Service\n"
+"X-Poedit-SearchPath-4: view\n"
+"X-Poedit-SearchPathExcluded-0: locale\n"
+"X-Poedit-SearchPathExcluded-1: public\n"
+
+#: Controller/AjaxFieldController.php:112
+#, fuzzy
+msgid ""
+"Field name may only contain letters, numbers, and underscores, and cannot "
+"start with a number."
+msgstr ""
+"Le nom du champ peut ne contenir que des lettres, des chiffres et des "
+"soulignements, et ne peut pas commencer par un chiffre."
+
+#: Controller/AjaxFieldController.php:142
+#, fuzzy
+msgid "Field group title is required."
+msgstr "Le titre de groupe de terrain est requis."
+
+#: Controller/AjaxFieldController.php:148
+#, fuzzy
+msgid "Add at least one field to this field group."
+msgstr "Ajoutez au moins un champ à ce groupe de champs."
+
+#: Controller/AjaxFieldController.php:153
+#, fuzzy
+msgid "Each field requires a field name."
+msgstr "Chaque champ nécessite un nom de champ."
+
+#: Controller/AjaxFieldController.php:158
+#, fuzzy, php-format
+msgid "Field \"%s\" has an invalid name."
+msgstr "Le champ « %s » a un nom invalide."
+
+#: Controller/AjaxFieldController.php:162
+#, fuzzy, php-format
+msgid "Field \"%s\" has an invalid field type."
+msgstr "Le champ « %s » a un type de champ invalide."
+
+#: Controller/AjaxFieldController.php:173
+#, fuzzy
+msgid "The field group data is invalid JSON."
+msgstr "Les données du groupe de champs sont du JSON invalide."
+
+#: Controller/AjaxFieldController.php:193
+msgid "Please enter a URL."
+msgstr "Veuillez entrer une URL."
+
+#: Controller/AjaxFieldController.php:200
+msgid "Please enter a valid URL."
+msgstr "Veuillez entrer une URL valide."
+
+#: Controller/AjaxFieldController.php:251
+msgid "Embed URL"
+msgstr "Intégration URL"
+
+#: Controller/AjaxFieldController.php:278
+#, fuzzy
+msgid "No image was uploaded."
+msgstr "Aucune image n’a été téléchargée."
+
+#: Controller/AjaxFieldController.php:285
+#, fuzzy
+msgid "The image upload failed."
+msgstr "Le téléchargement de l’image a échoué."
+
+#: Controller/AjaxFieldController.php:294
+#, fuzzy
+msgid "Only image uploads are allowed."
+msgstr "Seules les images sont autorisées."
+
+#: Controller/FieldGroupController.php:44
+msgid "Custom Field Groups"
+msgstr "Groupes de champs personnalisés"
+
+#: Controller/FieldGroupController.php:58
+msgid "Add Field Group"
+msgstr "Ajouter un groupe de champs"
+
+#: Controller/FieldGroupController.php:77
+#, fuzzy
+msgid "Field group created successfully."
+msgstr "Groupe de terrain créé avec succès."
+
+#: Controller/FieldGroupController.php:93
+#: Controller/FieldGroupController.php:217
+#, fuzzy
+msgid "Field group not found."
+msgstr "Groupe de terrain non trouvé."
+
+#: Controller/FieldGroupController.php:99
+msgid "Edit Field Group"
+msgstr "Modifier le groupe de champs"
+
+#: Controller/FieldGroupController.php:118
+#, fuzzy
+msgid "Field group updated successfully."
+msgstr "Le groupe de terrain a été mis à jour avec succès."
+
+#: Controller/FieldGroupController.php:130
+#, fuzzy
+msgid "Field group deleted successfully."
+msgstr "Le groupe de terrain a été supprimé avec succès."
+
+#: Controller/FieldGroupController.php:146
+#, fuzzy
+msgid "Unable to clone field group."
+msgstr "Impossible de cloner le groupe de terrain."
+
+#: Controller/FieldGroupController.php:151
+#, fuzzy
+msgid "Field group cloned successfully."
+msgstr "Le groupe de terrain a été cloné avec succès."
+
+#: Controller/FieldGroupController.php:163
+#, fuzzy
+msgid "Untitled Field Group"
+msgstr "Groupe de terrain sans titre"
+
+#: Controller/FieldGroupController.php:247
+#, fuzzy
+msgid "Import Field Group"
+msgstr "Groupe de champ d’importation"
+
+#: Controller/FieldGroupController.php:262
+#, fuzzy
+msgid "Please upload a valid JSON export file."
+msgstr "Veuillez télécharger un fichier d’exportation JSON valide."
+
+#: Controller/FieldGroupController.php:272
+#, fuzzy
+msgid "The uploaded file is not valid JSON."
+msgstr "Le fichier téléchargé n’est pas un JSON valide."
+
+#: Controller/FieldGroupController.php:281
+#, fuzzy
+msgid "The bundle does not contain any field groups."
+msgstr "Le fibré ne contient aucun groupe de champs."
+
+#: Controller/FieldGroupController.php:290
+#, fuzzy
+msgid "Field group bundle imported successfully."
+msgstr "Le groupe de champs a été importé avec succès."
+
+#: Controller/FieldGroupController.php:296
+#, fuzzy
+msgid "This file is not a valid Devflow Custom Fields export."
+msgstr "Ce fichier n’est pas une exportation valide de Devflow Custom Fields."
+
+#: Controller/FieldGroupController.php:303
+#, fuzzy
+msgid "Field group imported successfully."
+msgstr "Le groupe de terrain a été importé avec succès."
+
+#: Controller/FieldGroupController.php:322
+#, fuzzy
+msgid "Please select at least one field group."
+msgstr "Veuillez sélectionner au moins un groupe de terrain."
+
+#: Controller/FieldGroupController.php:342
+#, fuzzy
+msgid "Selected field groups deleted."
+msgstr "Groupes de champs sélectionnés supprimés."
+
+#: Controller/FieldGroupController.php:345
+#, fuzzy
+msgid "Selected field groups activated."
+msgstr "Groupes de terrain sélectionnés activés."
+
+#: Controller/FieldGroupController.php:348
+#, fuzzy
+msgid "Selected field groups deactivated."
+msgstr "Certains groupes de terrain désactivés."
+
+#: Controller/FieldGroupController.php:351
+#, fuzzy
+msgid "Please select a valid bulk action."
+msgstr "Veuillez sélectionner une action en bloc valide."
+
+#: Controller/SettingsController.php:33
+msgid "Custom Fields Settings"
+msgstr "Paramètres des champs personnalisés"
+
+#: Controller/SettingsController.php:68
+#, fuzzy
+msgid "Custom Fields settings updated successfully."
+msgstr ""
+"Les paramètres des champs personnalisés ont été mis à jour avec succès."
+
+#: Domain/FieldRenderer.php:873
+#, fuzzy
+msgid "Paste a YouTube, Vimeo, or supported embed URL"
+msgstr "Collez une URL d’intégration YouTube, Vimeo ou prise en charge"
+
+#: Domain/FieldRenderer.php:936
+msgid "Drop image here or click to upload"
+msgstr "Déposer les images ici ou cliquer pour les envoyer"
+
+#: Domain/FieldTypeRegistry.php:20
+msgid "Text"
+msgstr "Texte"
+
+#: Domain/FieldTypeRegistry.php:22 Domain/FieldTypeRegistry.php:30
+#: Domain/FieldTypeRegistry.php:38 Domain/FieldTypeRegistry.php:46
+#: Domain/FieldTypeRegistry.php:54 Domain/FieldTypeRegistry.php:62
+msgid "Basic"
+msgstr "Basique"
+
+#: Domain/FieldTypeRegistry.php:28
+msgid "Textarea"
+msgstr "Zone de texte"
+
+#: Domain/FieldTypeRegistry.php:36
+msgid "Rich Text"
+msgstr "Texte riche"
+
+#: Domain/FieldTypeRegistry.php:44
+#, fuzzy
+msgid "Email"
+msgstr "Email"
+
+#: Domain/FieldTypeRegistry.php:52
+msgid "Password"
+msgstr "Mot de passe"
+
+#: Domain/FieldTypeRegistry.php:60
+msgid "Telephone"
+msgstr "Téléphone"
+
+#: Domain/FieldTypeRegistry.php:68
+msgid "Select Dropdown"
+msgstr "Liste déroulante"
+
+#: Domain/FieldTypeRegistry.php:70 Domain/FieldTypeRegistry.php:78
+#: Domain/FieldTypeRegistry.php:86
+msgid "Choices"
+msgstr "Choix"
+
+#: Domain/FieldTypeRegistry.php:76
+msgid "Checklist"
+msgstr "Checklist"
+
+#: Domain/FieldTypeRegistry.php:84
+msgid "Radio Buttons"
+msgstr "Boutons radio"
+
+#: Domain/FieldTypeRegistry.php:92
+msgid "Gallery"
+msgstr "Galerie"
+
+#: Domain/FieldTypeRegistry.php:94 Domain/FieldTypeRegistry.php:102
+#: Domain/FieldTypeRegistry.php:110
+msgid "Media"
+msgstr "Média"
+
+#: Domain/FieldTypeRegistry.php:100
+msgid "Image"
+msgstr "Image"
+
+#: Domain/FieldTypeRegistry.php:116
+msgid "Repeater"
+msgstr "Répétiteur"
+
+#: Domain/FieldTypeRegistry.php:118 Domain/FieldTypeRegistry.php:126
+#: Domain/FieldTypeRegistry.php:142 Domain/FieldTypeRegistry.php:151
+msgid "Structure"
+msgstr "Structure"
+
+#: Domain/FieldTypeRegistry.php:124
+msgid "Flexible Content"
+msgstr "Contenu flexible"
+
+#: Domain/FieldTypeRegistry.php:132
+msgid "Help Text"
+msgstr "Texte d'aide"
+
+#: Domain/FieldTypeRegistry.php:134
+msgid "Utility"
+msgstr "Utilité"
+
+#: Domain/FieldTypeRegistry.php:140
+#, fuzzy
+msgid "2 Column Container"
+msgstr "Conteneur à 2 colonnes"
+
+#: Domain/FieldTypeRegistry.php:149
+#, fuzzy
+msgid "3 Column Container"
+msgstr "Conteneur à 3 colonnes"
+
+#: view/import.phtml:22 view/import.phtml:34 view/index.phtml:120
+#: view/index.phtml:134 view/settings.phtml:31 view/settings.phtml:43
+#: view/update.phtml:51 view/update.phtml:66
+msgid "Custom Fields"
+msgstr "Champs personnalisés"
+
+#: view/import.phtml:24 view/index.phtml:122 view/settings.phtml:42
+#: view/settings.phtml:49 view/update.phtml:53
+msgid "Settings"
+msgstr "Réglages"
+
+#: view/import.phtml:25 view/index.phtml:124 view/settings.phtml:34
+#: view/update.phtml:56
+msgid "Create"
+msgstr "Créer"
+
+#: view/import.phtml:26 view/import.phtml:65 view/index.phtml:264
+#: view/settings.phtml:35 view/settings.phtml:109 view/update.phtml:58
+#: view/update.phtml:473
+msgid "Cancel"
+msgstr "Annuler"
+
+#: view/import.phtml:38 view/index.phtml:137 view/settings.phtml:47
+#: view/update.phtml:70
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: view/import.phtml:39 view/index.phtml:132 view/index.phtml:138
+#: view/settings.phtml:48 view/update.phtml:71
+msgid "Field Groups"
+msgstr "Groupes de champs"
+
+#: view/import.phtml:40 view/index.phtml:123 view/settings.phtml:33
+#: view/update.phtml:54
+msgid "Import"
+msgstr "Importer"
+
+#: view/import.phtml:49
+#, fuzzy
+msgid "Upload Export File"
+msgstr "Télécharger le fichier d’exportation"
+
+#: view/import.phtml:54
+#, fuzzy
+msgid "Field Group JSON File"
+msgstr "Fichier JSON du groupe de terrain"
+
+#: view/import.phtml:56
+#, fuzzy
+msgid "Upload a JSON file exported from Devflow Custom Fields."
+msgstr "Téléchargez un fichier JSON exporté depuis Devflow Custom Fields."
+
+#: view/index.phtml:158
+msgid "Bulk Actions"
+msgstr "Actions groupées"
+
+#: view/index.phtml:159
+msgid "Set Active"
+msgstr "Définir comme actif"
+
+#: view/index.phtml:160
+msgid "Set Inactive"
+msgstr "Inactiver"
+
+#: view/index.phtml:161
+msgid "Export Selected"
+msgstr "Exporter la sélection"
+
+#: view/index.phtml:162 view/index.phtml:272
+msgid "Delete"
+msgstr "Supprimer"
+
+#: view/index.phtml:168
+msgid "Apply"
+msgstr "Appliquer"
+
+#: view/index.phtml:179 view/index.phtml:219 view/update.phtml:98
+msgid "Title"
+msgstr "Titre"
+
+#: view/index.phtml:180 view/index.phtml:220
+msgid "Used On"
+msgstr "Utilisé Le"
+
+#: view/index.phtml:181 view/index.phtml:221
+msgid "Order"
+msgstr "Commande"
+
+#: view/index.phtml:182 view/index.phtml:222 view/update.phtml:453
+msgid "Status"
+msgstr "Statut"
+
+#: view/index.phtml:203
+msgid "Edit"
+msgstr "Modifier"
+
+#: view/index.phtml:204 view/update.phtml:261
+msgid "Clone"
+msgstr "Dupliquer"
+
+#: view/index.phtml:205
+msgid "Export"
+msgstr "Exporter"
+
+#: view/index.phtml:244
+msgid "Confirm Delete"
+msgstr "Confirmer Suppression"
+
+#: view/index.phtml:250
+#, fuzzy
+msgid "Are you sure you want to delete the selected field groups?"
+msgstr ""
+"Êtes-vous sûr de vouloir supprimer les groupes de champs sélectionnés ?"
+
+#: view/index.phtml:254
+msgid "This action cannot be undone."
+msgstr "Cette action est irréversible."
+
+#: view/settings.phtml:62
+msgid "General Settings"
+msgstr "Réglages généraux"
+
+#: view/settings.phtml:74
+#, fuzzy
+msgid "Uninstall custom fields data when this plugin is deactivated."
+msgstr ""
+"Désinstallez les données des champs personnalisés lorsque ce plugin est "
+"désactivé."
+
+#: view/settings.phtml:78
+#, fuzzy
+msgid ""
+"Warning: this can remove field groups, fields, and plugin settings during "
+"deactivation."
+msgstr ""
+"Attention : cela peut supprimer les groupes de champs, champs et paramètres "
+"de plugins lors de la désactivation."
+
+#: view/settings.phtml:85
+#, fuzzy
+msgid "Default Gallery Preview Size"
+msgstr "Taille d’aperçu par défaut de la galerie"
+
+#: view/settings.phtml:87
+msgid "Small"
+msgstr "Petit"
+
+#: view/settings.phtml:88
+msgid "Medium"
+msgstr "Moyen"
+
+#: view/settings.phtml:89
+msgid "Large"
+msgstr "Grand"
+
+#: view/settings.phtml:94
+#, fuzzy
+msgid "Default Field Style"
+msgstr "Style de champ par défaut"
+
+#: view/settings.phtml:96 view/update.phtml:321 view/update.phtml:543
+msgid "Default"
+msgstr "Par défaut"
+
+#: view/settings.phtml:97 view/update.phtml:545
+msgid "Compact"
+msgstr "Compact"
+
+#: view/settings.phtml:98
+msgid "Comfortable"
+msgstr "Confortable"
+
+#: view/settings.phtml:105
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+#: view/update.phtml:72
+#, fuzzy
+msgid "Field Group Builder"
+msgstr "Fichier JSON du groupe de terrain"
+
+#: view/update.phtml:93
+msgid "Field Group"
+msgstr "Champ groupe"
+
+#: view/update.phtml:140
+msgid "Other"
+msgstr "Autre"
+
+#: view/update.phtml:147
+msgid "Field Types"
+msgstr "Types de champ"
+
+#: view/update.phtml:204
+#, fuzzy
+msgid "No field types found"
+msgstr "Aucun type de champ trouvé"
+
+#: view/update.phtml:213
+#, fuzzy
+msgid "Drag field types into this area. Sort fields by dragging them."
+msgstr ""
+"Faites des types de champs de drag dans cette zone. Triez les champs en les "
+"faisant glisser."
+
+#: view/update.phtml:218
+msgid "Expand All"
+msgstr "Développer tout"
+
+#: view/update.phtml:222
+msgid "Collapse All"
+msgstr "Tout réduire"
+
+#: view/update.phtml:230
+#, fuzzy
+msgid "Drag fields here to build this field group."
+msgstr "Des champs de drag ici pour construire ce groupe de terrain."
+
+#: view/update.phtml:262
+msgid "Remove"
+msgstr "Supprimer"
+
+#: view/update.phtml:270
+msgid "Field Name"
+msgstr "Nom du champ"
+
+#: view/update.phtml:272
+#, fuzzy
+msgid "Used as the attribute key."
+msgstr "Utilisé comme clé d’attribut."
+
+#: view/update.phtml:278
+msgid "Label"
+msgstr "Label"
+
+#: view/update.phtml:287
+msgid "Placeholder"
+msgstr "Etiquette"
+
+#: view/update.phtml:294
+msgid "Default Value"
+msgstr "Valeur par défaut"
+
+#: view/update.phtml:306
+msgid "Required"
+msgstr "Requis"
+
+#: view/update.phtml:307
+msgid "Hidden"
+msgstr "Masqué"
+
+#: view/update.phtml:308
+msgid "Readonly"
+msgstr "En lecture seule"
+
+#: view/update.phtml:309
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: view/update.phtml:315
+msgid "Appearance"
+msgstr "Apparence"
+
+#: view/update.phtml:319
+msgid "Width"
+msgstr "Largeur"
+
+#: view/update.phtml:332
+msgid "Label Color"
+msgstr "Couleur de l'étiquette"
+
+#: view/update.phtml:337
+msgid "Input Background"
+msgstr "Arrière-plan de la zone de saisie"
+
+#: view/update.phtml:344
+msgid "Text Color"
+msgstr "Couleur du texte"
+
+#: view/update.phtml:349
+msgid "Border Radius"
+msgstr "Rayon de la bordure"
+
+#: view/update.phtml:354
+msgid "Font Size"
+msgstr "Taille de la police"
+
+#: view/update.phtml:361
+msgid "Google Font"
+msgstr "Police Google"
+
+#: view/update.phtml:383
+msgid "CSS Class"
+msgstr "Classe CSS"
+
+#: view/update.phtml:392
+msgid "Conditional Logic"
+msgstr "Logique conditionnelle"
+
+#: view/update.phtml:396
+msgid "Enable conditional logic"
+msgstr "Activer la logique conditionnelle"
+
+#: view/update.phtml:402
+msgid "Action"
+msgstr "Action"
+
+#: view/update.phtml:404
+msgid "Show this field if"
+msgstr "Montrer ce champ si"
+
+#: view/update.phtml:405
+msgid "Hide this field if"
+msgstr "Cacher Champ Site"
+
+#: view/update.phtml:410
+msgid "Logic"
+msgstr "Logique"
+
+#: view/update.phtml:412
+#, fuzzy
+msgid "All rules match"
+msgstr "Toutes les règles correspondent"
+
+#: view/update.phtml:413
+#, fuzzy
+msgid "Any rule matches"
+msgstr "Toutes les règles correspondent"
+
+#: view/update.phtml:421
+msgid "Add Rule"
+msgstr "Ajouter Règle"
+
+#: view/update.phtml:428
+#, fuzzy
+msgid "Nested Fields"
+msgstr "Champs imbriqués"
+
+#: view/update.phtml:429
+#, fuzzy
+msgid ""
+"Nested builder support can be wired here for repeater and flexible content "
+"fields."
+msgstr ""
+"Le support du constructeur imbriqué peut être câblé ici pour des champs de "
+"contenu répéteurs et flexibles."
+
+#: view/update.phtml:455
+msgid "Active"
+msgstr "Actif"
+
+#: view/update.phtml:456
+msgid "Inactive"
+msgstr "Inactif"
+
+#: view/update.phtml:461
+msgid "Field Order"
+msgstr "Ordre du champ"
+
+#: view/update.phtml:469
+#, fuzzy
+msgid "Update Field Group"
+msgstr "Groupe de Mise à jour"
+
+#: view/update.phtml:469
+#, fuzzy
+msgid "Create Field Group"
+msgstr "Créer un groupe de champ"
+
+#: view/update.phtml:480
+msgid "Location Rules"
+msgstr "Règles d’emplacement"
+
+#: view/update.phtml:484
+#, fuzzy
+msgid "Show this field group on:"
+msgstr "Montrez ce groupe de terrain sur :"
+
+#: view/update.phtml:489
+msgid "Products"
+msgstr "Produits"
+
+#: view/update.phtml:496
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: view/update.phtml:503
+msgid "All Content"
+msgstr "Tout le contenu"
+
+#: view/update.phtml:510
+#, fuzzy
+msgid "Specific Content Types"
+msgstr "Types de contenu spécifiques"
+
+#: view/update.phtml:528
+msgid "Display Settings"
+msgstr "Paramètres d'affichage"
+
+#: view/update.phtml:533
+msgid "Position"
+msgstr "Position"
+
+#: view/update.phtml:535
+msgid "Extended"
+msgstr "Étendu"
+
+#: view/update.phtml:536
+msgid "Side"
+msgstr "Côté"
+
+#: view/update.phtml:541
+msgid "Style"
+msgstr "Style"
+
+#: view/update.phtml:544
+msgid "Seamless"
+msgstr "Sans soudure"
+
+#: view/update.phtml:546
+msgid "Elevated"
+msgstr "Élevée"
+
+#: view/update.phtml:547
+msgid "Outline"
+msgstr "Contour"
+
+#: view/update.phtml:548
+msgid "Muted"
+msgstr "Muet"
+
+#: view/update.phtml:549
+msgid "Dark"
+msgstr "Sombre"
+
+#: view/update.phtml:550
+msgid "Glass"
+msgstr "Verre"
+
+#: view/update.phtml:551
+msgid "Minimal"
+msgstr "Minimal"
+
+#: view/update.phtml:552
+msgid "Floating"
+msgstr "Flottant"
+
+#: view/update.phtml:553
+#, fuzzy
+msgid "Split Header"
+msgstr "En-tête divisé"
+
+#: view/update.phtml:554
+msgid "Borderless"
+msgstr "Sans bordures"
+
+#: view/update.phtml:555
+msgid "Rounded"
+msgstr "Arrondi"
+
+#~ msgid "Plugin Options"
+#~ msgstr "Options de l'extension"
