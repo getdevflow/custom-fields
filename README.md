@@ -349,7 +349,6 @@ Recommended:
 
 Future improvements may include:
 
-- [ ] renderer refactor
 - [ ] field tabs/groups
 - [ ] advanced display settings
 - [ ] reusable field presets
