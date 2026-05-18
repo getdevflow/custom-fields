@@ -51,7 +51,7 @@ class CustomFieldsPlugin extends Plugin
             'id' => 'custom-fields',
             'slug' => 'CustomFields',
             'author' => 'Joshua Parker',
-            'version' => '1.0.0',
+            'version' => '1.0.1',
             'description' => esc_html__(
                 'Full featured navigation/menu builder plugin for Devflow CMF.',
                 'custom-fields'
@@ -377,8 +377,8 @@ class CustomFieldsPlugin extends Plugin
     ): string {
         return FieldRenderer::make()->renderFor(
             context: 'product',
-            objectId: $id,
             fieldNamePrefix: 'product_field',
+            objectId: $id,
             type: null,
             position: $position
         );
@@ -405,8 +405,8 @@ class CustomFieldsPlugin extends Plugin
     ): string {
         return FieldRenderer::make()->renderFor(
             context: 'content',
-            objectId: $contentId,
             fieldNamePrefix: 'content_field',
+            objectId: $contentId,
             type: $contentType,
             position: $position
         );
@@ -427,8 +427,8 @@ class CustomFieldsPlugin extends Plugin
     {
         return FieldRenderer::make()->renderFor(
             context: 'user',
-            objectId: $userId,
             fieldNamePrefix: 'user_field',
+            objectId: $userId,
             type: null,
             position: $position
         );
