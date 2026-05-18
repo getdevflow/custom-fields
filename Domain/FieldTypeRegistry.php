@@ -26,7 +26,7 @@ final class FieldTypeRegistry
             ],
             'textarea' => [
                 'label' => esc_html__('Textarea', 'custom-fields'),
-                'icon' => null,
+                'icon' => 'fa-file-lines',
                 'category' => esc_html__('Basic', 'custom-fields'),
                 'supports_options' => false,
                 'supports_placeholder' => true,

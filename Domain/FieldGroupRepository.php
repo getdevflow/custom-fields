@@ -343,7 +343,7 @@ final readonly class FieldGroupRepository
             $byParent[$parentId][$zone][] = $field;
         }
 
-        $build = function (?string $parentId, string $zone = 'root') use (&$build, &$byParent): array {
+        $build = function (?string $parentId = null, string $zone = 'root') use (&$build, &$byParent): array {
             $items = $byParent[$parentId][$zone] ?? [];
 
             foreach ($items as &$item) {

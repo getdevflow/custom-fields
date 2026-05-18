@@ -88,7 +88,7 @@ final class Field
      */
     public static function has(
         string $field,
-        string|int|null $objectId,
+        ?string $objectId = null,
         string $context = 'content',
         ?string $siteId = null
     ): bool {
@@ -109,7 +109,7 @@ final class Field
      */
     public static function image(
         string $field,
-        string|int|null $objectId,
+        ?string $objectId = null,
         string $context = 'content',
         ?string $siteId = null
     ): ?array {
@@ -120,7 +120,7 @@ final class Field
 
     public static function images(
         string $field,
-        string|int|null $objectId,
+        ?string $objectId = null,
         string $context = 'content',
         ?string $siteId = null
     ): array {
@@ -144,7 +144,7 @@ final class Field
      */
     public static function gallery(
         string $field,
-        string|int|null $objectId,
+        ?string $objectId = null,
         string $context = 'content',
         ?string $siteId = null
     ): array {
@@ -176,7 +176,7 @@ final class Field
      */
     public static function rows(
         string $field,
-        string|int|null $objectId,
+        ?string $objectId = null,
         string $context = 'content',
         ?string $siteId = null
     ): array {
