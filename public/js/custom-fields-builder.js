@@ -545,14 +545,14 @@ Option 2</textarea>
         $field.find('> .cf-field-body .cf-gallery-preview-size')
             .first()
             .val(settings.gallery_preview_size || '');
-        $field.find('> .cf-gallery-preview-size-wrapper')
+        $field.find('> .cf-field-body .cf-gallery-preview-size-wrapper')
             .toggle(type === 'gallery');
 
         const options = field.options || field.field_options || [];
 
-        if (Array.isArray(options)) {
-            $field.find('> .cf-field-body .cf-options').first().val(options.join('\n'));
-        }
+        $field.find('> .cf-field-body .cf-options')
+            .first()
+            .val(optionsToTextarea(options));
 
         const validation = field.validation || field.validation_rules || {};
 
@@ -769,6 +769,24 @@ Option 2</textarea>
         });
 
         return errors;
+    }
+
+    function optionsToTextarea(options) {
+        if (!options) {
+            return '';
+        }
+
+        if (Array.isArray(options)) {
+            return options.join('\n');
+        }
+
+        if (typeof options === 'object') {
+            return Object.entries(options)
+                .map(([key, label]) => `${key} => ${label}`)
+                .join('\n');
+        }
+
+        return String(options);
     }
 
     $(function () {

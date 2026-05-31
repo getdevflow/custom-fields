@@ -7,11 +7,11 @@ flexible content layouts, conditional logic, media fields, appearance controls, 
 
 > __Requires__ Devflow Version: 2.x
 
-> __Tested Up To:__ 2.0.0
+> __Tested Up To:__ 2.2.0
 
 > __Requires PHP:__ 8.4+
 
-> __Stable Tag:__ 1.0.1
+> __Stable Tag:__ 1.0.2
 
 > __License:__ GPLv2-only
 
