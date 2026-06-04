@@ -7,7 +7,7 @@ flexible content layouts, conditional logic, media fields, appearance controls, 
 
 > __Requires__ Devflow Version: 2.x
 
-> __Tested Up To:__ 2.2.0
+> __Tested Up To:__ 2.2.1
 
 > __Requires PHP:__ 8.4+
 
@@ -152,10 +152,10 @@ Example:
 
 ---
 
-## Composer Installation
+## Codex Installation
 
 1. Start a new shell session.
-2. Navigate to the root of your install, run the following command ```composer require getdevflow/custom-fields```.
+2. Navigate to the root of your install, run the following command ```php codex plugin:install getdevflow/custom-fields```.
 
 ---
 
