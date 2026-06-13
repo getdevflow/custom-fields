@@ -11,7 +11,7 @@ flexible content layouts, conditional logic, media fields, appearance controls, 
 
 > __Requires PHP:__ 8.4+
 
-> __Stable Tag:__ 1.0.2
+> __Stable Tag:__ 1.0.3
 
 > __License:__ GPLv2-only
 

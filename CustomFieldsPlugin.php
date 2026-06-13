@@ -84,27 +84,27 @@ class CustomFieldsPlugin extends Plugin
 
         Filter::getInstance()->addFilter(hook: 'content_attribute_box_extended', callback: function ($form, ?string $type = null, ?string $id = null) {
             return $this->renderContentFields($form, $id, $type);
-        }, priority: 5, arguments: 3);
+        }, priority: 99, arguments: 3);
 
         Filter::getInstance()->addFilter(hook: 'content_attribute_box_side', callback: function ($form, ?string $type = null, ?string $id = null) {
             return $this->renderContentFields($form, $id, $type, 'side');
-        }, priority: 5, arguments: 3);
+        }, priority: 99, arguments: 3);
 
         Filter::getInstance()->addFilter(hook: 'product_attribute_box_extended', callback: function ($form, ?string $id = null) {
             return $this->renderProductFields($form, $id);
-        }, priority: 5, arguments: 3);
+        }, priority: 99, arguments: 3);
 
         Filter::getInstance()->addFilter(hook: 'product_attribute_box_side', callback: function ($form, ?string $id = null) {
             return $this->renderProductFields($form, $id, 'side');
-        }, priority: 5, arguments: 3);
+        }, priority: 99, arguments: 3);
 
         Filter::getInstance()->addFilter(hook: 'user.attribute.box.extended', callback: function (string $html = '', ?string $id = null) {
             return $html . $this->renderUserFields($id);
-        }, priority: 5, arguments: 2);
+        }, priority: 99, arguments: 2);
 
         Filter::getInstance()->addFilter(hook: 'user.attribute.box.side', callback: function (string $html = '', ?string $id = null) {
             return $html . $this->renderUserFields($id, 'side');
-        }, priority: 5);
+        }, priority: 99);
 
         Action::getInstance()->addAction(hook: 'admin_notices', callback: function () {
             $html = '<div id="cf-error-summary" class="alert alert-danger hidden" tabindex="-1">';
