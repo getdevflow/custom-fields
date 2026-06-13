@@ -51,7 +51,7 @@ class CustomFieldsPlugin extends Plugin
             'id' => 'custom-fields',
             'slug' => 'CustomFields',
             'author' => 'Joshua Parker',
-            'version' => '1.0.2',
+            'version' => '1.0.3',
             'description' => esc_html__(
                 'Full featured navigation/menu builder plugin for Devflow CMF.',
                 'custom-fields'
