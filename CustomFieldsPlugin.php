@@ -51,7 +51,7 @@ class CustomFieldsPlugin extends Plugin
             'id' => 'custom-fields',
             'slug' => 'CustomFields',
             'author' => 'Joshua Parker',
-            'version' => '1.0.3',
+            'version' => '1.0.4',
             'description' => esc_html__(
                 'Full featured navigation/menu builder plugin for Devflow CMF.',
                 'custom-fields'
@@ -82,29 +82,29 @@ class CustomFieldsPlugin extends Plugin
         Action::getInstance()->addAction(hook: 'cms_admin_footer', callback: [$this, 'enqueueRuntimeGalleryJs']);
         Action::getInstance()->addAction(hook: 'plugins_submenu', callback: [$this, 'registerSubmenu']);
 
-        Filter::getInstance()->addFilter(hook: 'content_attribute_box_extended', callback: function ($form, ?string $type = null, ?string $id = null) {
-            return $this->renderContentFields($form, $id, $type);
-        }, priority: 99, arguments: 3);
+        Filter::getInstance()->addFilter(hook: 'content.attribute.box.extended', callback: function ($html, ?string $type = null, ?string $id = null) {
+            return $this->renderContentFields($html, $id, $type);
+        }, priority: 5, arguments: 3);
 
-        Filter::getInstance()->addFilter(hook: 'content_attribute_box_side', callback: function ($form, ?string $type = null, ?string $id = null) {
-            return $this->renderContentFields($form, $id, $type, 'side');
-        }, priority: 99, arguments: 3);
+        Filter::getInstance()->addFilter(hook: 'content.attribute.box.side', callback: function ($html, ?string $type = null, ?string $id = null) {
+            return $this->renderContentFields($html, $id, $type, 'side');
+        }, priority: 5, arguments: 3);
 
-        Filter::getInstance()->addFilter(hook: 'product_attribute_box_extended', callback: function ($form, ?string $id = null) {
-            return $this->renderProductFields($form, $id);
-        }, priority: 99, arguments: 3);
+        Filter::getInstance()->addFilter(hook: 'product.attribute.box.extended', callback: function ($html, ?string $id = null) {
+            return $this->renderProductFields($html, $id);
+        }, priority: 5, arguments: 2);
 
-        Filter::getInstance()->addFilter(hook: 'product_attribute_box_side', callback: function ($form, ?string $id = null) {
-            return $this->renderProductFields($form, $id, 'side');
-        }, priority: 99, arguments: 3);
+        Filter::getInstance()->addFilter(hook: 'product.attribute.box.side', callback: function ($html, ?string $id = null) {
+            return $this->renderProductFields($html, $id, 'side');
+        }, priority: 5, arguments: 2);
 
-        Filter::getInstance()->addFilter(hook: 'user.attribute.box.extended', callback: function (string $html = '', ?string $id = null) {
-            return $html . $this->renderUserFields($id);
-        }, priority: 99, arguments: 2);
+        Filter::getInstance()->addFilter(hook: 'user.attribute.box.extended', callback: function ($html, ?string $id = null) {
+            return $this->renderUserFields($html, $id);
+        }, priority: 5, arguments: 2);
 
-        Filter::getInstance()->addFilter(hook: 'user.attribute.box.side', callback: function (string $html = '', ?string $id = null) {
-            return $html . $this->renderUserFields($id, 'side');
-        }, priority: 99);
+        Filter::getInstance()->addFilter(hook: 'user.attribute.box.side', callback: function ($html, ?string $id = null) {
+            return $this->renderUserFields($html, $id, 'side');
+        }, priority: 5, arguments: 2);
 
         Action::getInstance()->addAction(hook: 'admin_notices', callback: function () {
             $html = '<div id="cf-error-summary" class="alert alert-danger hidden" tabindex="-1">';
@@ -214,7 +214,9 @@ class CustomFieldsPlugin extends Plugin
     }
 
     /**
-     * @throws Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function enqueueStyles(): void
     {
@@ -237,7 +239,9 @@ class CustomFieldsPlugin extends Plugin
     }
 
     /**
-     * @throws Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function enqueueScripts(): void
     {
@@ -260,7 +264,9 @@ class CustomFieldsPlugin extends Plugin
     }
 
     /**
-     * @throws Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function enqueueRuntimeCss(): void
     {
@@ -301,7 +307,9 @@ class CustomFieldsPlugin extends Plugin
     }
 
     /**
-     * @throws Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function enqueueRuntimeGalleryJs(): void
     {
@@ -359,7 +367,7 @@ class CustomFieldsPlugin extends Plugin
     }
 
     /**
-     * @param mixed $form
+     * @param mixed $html
      * @param string|null $id
      * @param string $position
      * @return string
@@ -371,11 +379,11 @@ class CustomFieldsPlugin extends Plugin
      * @throws TypeException
      */
     private function renderProductFields(
-        mixed $form,
+        mixed $html,
         ?string $id = null,
         string $position = 'extended'
     ): string {
-        return FieldRenderer::make()->renderFor(
+        return $html . FieldRenderer::make()->renderFor(
             context: 'product',
             fieldNamePrefix: 'product_field',
             objectId: $id,
@@ -385,7 +393,7 @@ class CustomFieldsPlugin extends Plugin
     }
 
     /**
-     * @param mixed $form
+     * @param mixed $html
      * @param string|null $contentId
      * @param string|null $contentType
      * @param string $position
@@ -398,12 +406,12 @@ class CustomFieldsPlugin extends Plugin
      * @throws TypeException
      */
     public function renderContentFields(
-        mixed $form,
+        mixed $html,
         ?string $contentId = null,
         ?string $contentType = null,
         string $position = 'extended'
     ): string {
-        return FieldRenderer::make()->renderFor(
+        return $html . FieldRenderer::make()->renderFor(
             context: 'content',
             fieldNamePrefix: 'content_field',
             objectId: $contentId,
@@ -413,6 +421,7 @@ class CustomFieldsPlugin extends Plugin
     }
 
     /**
+     * @param mixed $html
      * @param string|null $userId
      * @param string $position
      * @return string
@@ -423,9 +432,9 @@ class CustomFieldsPlugin extends Plugin
      * @throws ReflectionException
      * @throws TypeException
      */
-    public function renderUserFields(?string $userId = null, string $position = 'extended'): string
+    public function renderUserFields(mixed $html, ?string $userId = null, string $position = 'extended'): string
     {
-        return FieldRenderer::make()->renderFor(
+        return $html . FieldRenderer::make()->renderFor(
             context: 'user',
             fieldNamePrefix: 'user_field',
             objectId: $userId,
