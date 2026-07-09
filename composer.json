@@ -1,6 +1,6 @@
 {
   "name": "getdevflow/custom-fields",
-  "description": "A powerful and flexible developer-friendly custom fields plugin for Devflow CMF.",
+  "description": "A powerful and flexible developer-friendly custom fields plugin for Devflow CMS.",
   "type": "devflow-plugin",
   "keywords": ["customfields","custom-fields","metadata","usermeta","user-meta"],
   "license": "GPL-2.0-only",
