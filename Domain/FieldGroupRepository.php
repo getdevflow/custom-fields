@@ -502,56 +502,69 @@ final readonly class FieldGroupRepository
             return [];
         }
 
-        if (is_array($options)) {
-            $normalized = [];
-
-            foreach ($options as $key => $value) {
-                if (is_string($key) && ! is_numeric($key)) {
-                    $normalized[$key] = (string) $value;
-                    continue;
-                }
-
-                if (is_string($value) && str_contains($value, '=>')) {
-                    [$optionKey, $optionLabel] = array_map(
-                        'trim',
-                        explode('=>', $value, 2)
-                    );
-
-                    if ($optionKey !== '') {
-                        $normalized[$optionKey] = $optionLabel;
-                    }
-
-                    continue;
-                }
-
-                if (is_string($value) && trim($value) !== '') {
-                    $normalized[] = trim($value);
-                }
-            }
-
-            return $normalized;
-        }
+        $lines = is_array($options)
+            ? $options
+            : preg_split('/\r\n|\r|\n/', $options);
 
         $normalized = [];
 
-        foreach (preg_split('/\r\n|\r|\n/', $options) as $line) {
-            $line = trim($line);
+        foreach ($lines as $key => $option) {
+            /*
+             * Already normalized.
+             */
+            if (
+                is_array($option) &&
+                array_key_exists('value', $option) &&
+                array_key_exists('label', $option)
+            ) {
+                $normalized[] = [
+                    'value' => (string) $option['value'],
+                    'label' => (string) $option['label'],
+                ];
+
+                continue;
+            }
+
+            /*
+             * Existing associative options.
+             */
+            if (! is_int($key)) {
+                $normalized[] = [
+                    'value' => (string) $key,
+                    'label' => trim((string) $option),
+                ];
+
+                continue;
+            }
+
+            $line = trim((string) $option);
 
             if ($line === '') {
                 continue;
             }
 
             if (str_contains($line, '=>')) {
-                [$key, $label] = array_map('trim', explode('=>', $line, 2));
+                [$value, $label] = array_map(
+                    'trim',
+                    explode('=>', $line, 2)
+                );
 
-                if ($key !== '') {
-                    $normalized[$key] = $label;
+                if ($value === '') {
+                    continue;
                 }
+
+                $normalized[] = [
+                    'value' => $value,
+                    'label' => $label,
+                ];
 
                 continue;
             }
 
-            $normalized[] = $line;
+            $normalized[] = [
+                'value' => $line,
+                'label' => $line,
+            ];
         }
 
         return $normalized;
