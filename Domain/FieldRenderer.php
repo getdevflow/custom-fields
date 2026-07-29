@@ -259,17 +259,16 @@ final class FieldRenderer
     {
         $id = $this->fieldId($this->fieldName($field));
 
-        $options = $this->fieldOptions($field) ?? [];
+        $options = $this->normalizedOptions($field);
         $options = is_array($options) ? $options : [];
 
         $html = $this->openFieldWrapper($field);
         $html .= '<label>' . htmlspecialchars($this->fieldLabel($field)) . '</label>';
         $html .= '<select name="' . htmlspecialchars($name) . '" class="form-control select2" ' . $this->attributes($field) . '>';
 
-        foreach ($options as $optionValue => $optionLabel) {
-            if (is_int($optionValue)) {
-                $optionValue = $optionLabel;
-            }
+        foreach ($options as $option) {
+            $optionValue = $option['value'];
+            $optionLabel = $option['label'];
 
             $selected = (string) $value === (string) $optionValue
             ? ' selected'
@@ -297,7 +296,7 @@ final class FieldRenderer
     {
         $id = $this->fieldId($this->fieldName($field));
 
-        $options = $this->fieldOptions($field) ?? [];
+        $options = $this->normalizedOptions($field);
         $options = is_array($options) ? $options : [];
 
         $values = is_array($value) ? $value : [];
@@ -305,10 +304,9 @@ final class FieldRenderer
         $html = $this->openFieldWrapper($field);
         $html .= '<label>' . htmlspecialchars($this->fieldLabel($field)) . '</label>';
 
-        foreach ($options as $optionValue => $optionLabel) {
-            if (is_int($optionValue)) {
-                $optionValue = $optionLabel;
-            }
+        foreach ($options as $option) {
+            $optionValue = $option['value'];
+            $optionLabel = $option['label'];
 
             $checked = in_array((string) $optionValue, $values, true)
             ? ' checked'
@@ -341,16 +339,15 @@ final class FieldRenderer
     {
         $id = $this->fieldId($this->fieldName($field));
 
-        $options = $this->fieldOptions($field) ?? [];
+        $options = $this->normalizedOptions($field);
         $options = is_array($options) ? $options : [];
 
         $html = $this->openFieldWrapper($field);
         $html .= '<label>' . htmlspecialchars($this->fieldLabel($field)) . '</label>';
 
-        foreach ($options as $optionValue => $optionLabel) {
-            if (is_int($optionValue)) {
-                $optionValue = $optionLabel;
-            }
+        foreach ($options as $option) {
+            $optionValue = $option['value'];
+            $optionLabel = $option['label'];
 
             $checked = (string) $value === (string) $optionValue
             ? ' checked'
@@ -1768,5 +1765,32 @@ final class FieldRenderer
         $validation = $field['validation_rules'] ?? $field['validation'] ?? [];
 
         return is_array($validation) ? $validation : [];
+    }
+
+    private function normalizedOptions(array $field): array
+    {
+        $options = $this->fieldOptions($field);
+        $normalized = [];
+
+        foreach ($options as $key => $option) {
+            if (
+                is_array($option) &&
+                array_key_exists('value', $option)
+            ) {
+                $normalized[] = [
+                    'value' => (string) $option['value'],
+                    'label' => (string) ($option['label'] ?? $option['value']),
+                ];
+
+                continue;
+            }
+
+            $normalized[] = [
+                'value' => is_int($key) ? (string) $option : (string) $key,
+                'label' => (string) $option,
+            ];
+        }
+
+        return $normalized;
     }
 }

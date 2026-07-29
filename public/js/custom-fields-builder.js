@@ -777,12 +777,24 @@ Option 2</textarea>
         }
 
         if (Array.isArray(options)) {
-            return options.join('\n');
+            return options
+                .map(function (option) {
+                    if (
+                        option &&
+                        typeof option === 'object' &&
+                        Object.prototype.hasOwnProperty.call(option, 'value')
+                    ) {
+                        return `${option.value} => ${option.label ?? option.value}`;
+                    }
+
+                    return String(option);
+                })
+                .join('\n');
         }
 
         if (typeof options === 'object') {
             return Object.entries(options)
-                .map(([key, label]) => `${key} => ${label}`)
+                .map(([value, label]) => `${value} => ${label}`)
                 .join('\n');
         }
 
