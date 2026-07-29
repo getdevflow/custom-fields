@@ -245,8 +245,6 @@ $isEditing = $group !== null;
                                             $fieldSettings = $field['field_settings'] ?? $field['settings'] ?? [];
                                             $styles = $field['style_settings'] ?? $field['styles'] ?? [];
                                             $validation = $field['validation_rules'] ?? $field['validation'] ?? [];
-
-                                            $optionsText = is_array($options) ? implode("\n", $options) : '';
                                             ?>
                                             <div class="cf-field-panel" data-field-id="<?= esc_html($fieldId); ?>" data-type="<?= esc_html($type); ?>">
                                                 <div class="cf-field-header">
