@@ -43,6 +43,7 @@ $r = Registry::getInstance()->get('custom-fields');
 
         <section class="content">
             <form method="post" action="<?= $params['action']; ?>" enctype="multipart/form-data">
+                <?= csrf_field(); ?>
 
                 <div class="box box-primary">
                     <div class="box-header with-border">

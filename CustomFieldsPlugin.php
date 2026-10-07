@@ -51,7 +51,7 @@ class CustomFieldsPlugin extends Plugin
             'id' => 'custom-fields',
             'slug' => 'CustomFields',
             'author' => 'Joshua Parker',
-            'version' => '1.0.7',
+            'version' => '2.0.0',
             'description' => esc_html__(
                 'A powerful and flexible developer-friendly custom fields plugin for Devflow CMS.',
                 'custom-fields'
@@ -199,9 +199,6 @@ class CustomFieldsPlugin extends Plugin
         }
     }
 
-    /**
-     * @throws Exception
-     */
     protected function migrateDown(): void
     {
         if ($this->dfdb->schema()->hasTable(table: $this->dfdb->prefix . 'custom_field')) {
@@ -217,6 +214,7 @@ class CustomFieldsPlugin extends Plugin
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws ReflectionException
+     * @throws TypeException
      */
     public function enqueueStyles(): void
     {
@@ -242,6 +240,7 @@ class CustomFieldsPlugin extends Plugin
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws ReflectionException
+     * @throws TypeException
      */
     public function enqueueScripts(): void
     {
@@ -267,6 +266,7 @@ class CustomFieldsPlugin extends Plugin
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws ReflectionException
+     * @throws TypeException
      */
     public function enqueueRuntimeCss(): void
     {
@@ -310,6 +310,7 @@ class CustomFieldsPlugin extends Plugin
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      * @throws ReflectionException
+     * @throws TypeException
      */
     public function enqueueRuntimeGalleryJs(): void
     {
@@ -447,7 +448,7 @@ class CustomFieldsPlugin extends Plugin
     {
         $router = Devflow::$PHP->router;
 
-        $router->group('/admin/plugin/custom-fields', function ($route) {
+        $router->group(['prefix' => '/admin/plugin/custom-fields', 'middleware' => ['gate:manage:plugins, /admin/']], function ($route) {
             $route->get('/', fn(FieldGroupController $controller) => $controller->index());
 
             $route->get('/settings/', fn(SettingsController $controller) => $controller->edit());
@@ -464,8 +465,8 @@ class CustomFieldsPlugin extends Plugin
             $route->get('/{id}/edit/', fn(FieldGroupController $controller, string $id) => $controller->edit($id));
             $route->post('/{id}/update/', fn(FieldGroupController $controller, ServerRequest $r, string $id) => $controller->update($r, $id));
 
-            $route->get('/{id}/delete/', fn(FieldGroupController $controller, string $id) => $controller->delete($id));
-            $route->get('/{id}/clone/', fn(FieldGroupController $controller, string $id) => $controller->clone($id));
+            $route->post('/{id}/delete/', fn(FieldGroupController $controller, string $id) => $controller->delete($id));
+            $route->post('/{id}/clone/', fn(FieldGroupController $controller, string $id) => $controller->clone($id));
             $route->get('/{id}/export/', fn(FieldGroupController $controller, string $id) => $controller->export($id));
 
             $route->post('/ajax/field-template/', fn(AjaxFieldController $controller, ServerRequest $r) => $controller->fieldTemplate($r));

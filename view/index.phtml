@@ -151,6 +151,7 @@ $r = Registry::getInstance()->get('custom-fields');
                 <div class="box-body">
 
                     <form method="post" action="<?= admin_url('plugin/custom-fields/bulk/'); ?>" id="custom-fields-bulk-form">
+                        <?= csrf_field(); ?>
 
                         <div class="row" style="margin-bottom: 10px;">
                             <div class="col-sm-4">
@@ -201,7 +202,7 @@ $r = Registry::getInstance()->get('custom-fields');
                                         </strong>
                                         <div class="row-actions">
                                             <span><a href="<?= admin_url(sprintf('plugin/custom-fields/%s/edit/', $group['id'])); ?>"><?=esc_html__('Edit', $r['id']);?></a></span> |
-                                            <span><a href="<?= admin_url(sprintf('plugin/custom-fields/%s/clone/', $group['id'])); ?>"><?=esc_html__('Clone', $r['id']);?></a></span> |
+                                            <span><button type="submit" class="btn btn-link" formnovalidate formaction="<?= admin_url(sprintf('plugin/custom-fields/%s/clone/', $group['id'])); ?>"><?=esc_html__('Clone', $r['id']);?></button></span> |
                                             <span><a href="<?= admin_url(sprintf('plugin/custom-fields/%s/export/', $group['id'])); ?>"><?=esc_html__('Export', $r['id']);?></a></span>
                                         </div>
                                     </td>

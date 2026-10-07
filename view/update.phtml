@@ -79,6 +79,7 @@ $isEditing = $group !== null;
         <?= Devflow::$PHP->flash->display(); ?>
 
         <form method="post" action="<?= $action; ?>" id="custom-field-group-form">
+            <?= csrf_field(); ?>
 
             <input
                 type="hidden"

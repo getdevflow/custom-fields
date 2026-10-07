@@ -5,13 +5,13 @@ A powerful and flexible developer-friendly custom fields plugin for Devflow CMF.
 Devflow Custom Fields allows developers to build advanced content editing experiences using repeaters, 
 flexible content layouts, conditional logic, media fields, appearance controls, and more.
 
-> __Requires__ Devflow Version: 2.x
+> __Requires__ Devflow Version: 3.x
 
-> __Tested Up To:__ 2.5.3
+> __Tested Up To:__ 3.0.0
 
 > __Requires PHP:__ 8.4+
 
-> __Stable Tag:__ 1.0.7
+> __Stable Tag:__ 2.0.0
 
 > __License:__ GPLv2-only
 
